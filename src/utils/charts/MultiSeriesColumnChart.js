@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const MultiSeriesColumnChart = ({ chartTitle, chartData, yAxisTitle, cId }) => {
+const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle, cId }) => {
   const { anychart, isAnychartReady } = useAnychart();
 
   useEffect(() => {
@@ -10,29 +10,33 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, yAxisTitle, cId }) => {
 
   const renderChart = () => {
     anychart.onDocumentReady(() => {
-        const chartElement = document.getElementById(`container${cId}`);
-        if (chartElement !== null) chartElement.innerHTML = "";
+      const chartElement = document.getElementById(`container${cId}`);
+      if (chartElement !== null) chartElement.innerHTML = "";
       // create column chart
       let chart = anychart.column();
 
       chart.title(chartTitle);
       chart.width("99%");
-      chart.maxPointWidth("30%");
+      chart.maxPointWidth("10%");
       chart.minPointLength(5);
+      chart.animation(true);  // turn on chart animation
+      chart.barsPadding(-0.8);  // set the padding between columns
+      chart.yAxis().title(yAxisTitle);  // set titles for Y-axis
+      chart.xAxis().title(xAxisTitle);  // set titles for X-axis
 
       // set chart data
       let dataSet = anychart.data.set(chartData.rows);
       let mapping1 = dataSet.mapAs({
         x: 0,
-        value: 1
+        value: 1,
       });
 
       let mapping2 = dataSet.mapAs({
         x: 0,
-        value: 2
+        value: 2,
       });
 
-      // create the first series and set the data
+      // create the first series and set the data and options
       let series1 = chart.column(mapping1);
       series1.fill({ keys: ["#f9c54f", "#e46858"], angle: 90, opacity: 1 });
       series1.stroke({
@@ -42,16 +46,19 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, yAxisTitle, cId }) => {
         lineCap: "round",
         thickness: 0.5,
       });
-      // create the second series and set the data
+      series1.name("Estimated");
+
+      // create the second series and set the data and options
       let series2 = chart.column(mapping2);
       series2.fill({ keys: ["#EE5007", "#B22727"], angle: 90, opacity: 1 });
-      series1.stroke({
+      series2.stroke({
         keys: ["#EE5007", "#B22727"],
         angle: 90,
         lineJoin: "round",
         lineCap: "round",
         thickness: 0.5,
       });
+      series2.name("Actual");
 
       let roundBackground = chart.background();
       // set corner type
@@ -59,11 +66,6 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, yAxisTitle, cId }) => {
       // apply corner type only for top-left and bottom-right corners.
       roundBackground.corners(10, 10, 0, 0);
 
-      // turn on chart animation
-      chart.animation(true);
-
-      // set titles for Y-axis
-      chart.yAxis().title(yAxisTitle);
 
       // turn on legend and tune it
       chartData.hasOwnProperty("header")
@@ -102,15 +104,11 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, yAxisTitle, cId }) => {
     });
   };
   return (
-    <React.Fragment>
-      <div id={`chart${cId}`} className={"chartWrapper"}>
-        <div
-          id={`container${cId}`}
-          className="chartContainer"
-          style={{ height: "400px" }}
-        />
-      </div>
-    </React.Fragment>
+    <div
+      id={`container${cId}`}
+      className="chartContainer"
+      style={{ height: "400px" }}
+    />
   );
 };
 
