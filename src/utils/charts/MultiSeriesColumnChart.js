@@ -6,7 +6,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
 
   useEffect(() => {
     isAnychartReady && anychart && renderChart();
-  }, [chartTitle, chartData, yAxisTitle, isAnychartReady, anychart]);
+  }, [chartTitle, chartData, xAxisTitle, yAxisTitle, isAnychartReady, anychart]);
 
   const renderChart = () => {
     anychart.onDocumentReady(() => {

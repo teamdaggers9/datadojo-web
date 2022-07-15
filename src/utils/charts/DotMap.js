@@ -1,34 +1,21 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const BubbleWorldMap = ({
-  chartTitle,
-  chartData,
-  cId,
-}) => {
+const DotMap = ({ chartTitle, chartData, cId }) => {
   const { anychart, isAnychartReady } = useAnychart();
 
   useEffect(() => {
     isAnychartReady && anychart && renderChart();
-  }, [
-    chartTitle,
-    chartData,
-    isAnychartReady,
-    anychart,
-  ]);
+  }, [chartTitle, chartData, isAnychartReady, anychart]);
 
   const renderChart = () => {
     anychart.onDocumentReady(() => {
       const chartElement = document.getElementById(`container${cId}`);
       if (chartElement !== null) chartElement.innerHTML = "";
-      // Creates data set
-      var dataSet = anychart.data.set(chartData);
 
       // Creates Map Chart
       var map = anychart.map();
-
-      // Sets geodata using https://cdn.anychart.com/geodata/latest/custom/world/world.js
-      map.geoData("anychart.maps.world");
+      map.geoData('anychart.maps.world').padding(0);
 
       // Sets Chart Title
       map
@@ -37,39 +24,35 @@ const BubbleWorldMap = ({
         .text("Organisation Workforce Distribution")
         .padding([0, 0, 20, 0]);
 
-      map.interactivity().selectionMode("none");
+      // creates Dataset from Sample data
+      var dataSet = anychart.data.set(chartData);
+      let series = map.marker(dataSet);
+      series
+      .fill('#ff8f00')
+      .stroke('1 #ff8f00')
+      .type('circle')
+      .size(4)
+      .labels(false)
+      .selectionMode('none');
 
-      // Creates bubble series
-      map
-        .bubble()
-        .data(dataSet)
-        // Sets series settings
-        .geoIdField('iso_a2')
-        .fill('#ff8f00 0.6')
-        .stroke('1 #ff6f00 0.9');
-      map.hovered().fill('#78909c').stroke('1 #546e7a 1');
+      // Enables map tooltip and sets settings for tooltip
+      map.tooltip().title().fontColor('#fff');
+      map.tooltip().titleFormat(function () {
+        return this.getData('place');
+      });
 
       map
         .tooltip()
         .useHtml(true)
-        .title({ fontColor: '#7c868e' })
         .padding([8, 13, 10, 13])
+        .width(350)
+        .fontSize(12)
+        .fontColor('#e6e6e6')
         .format(function () {
-          if (this.getData('size') !== '') {
-            return (
-              this.getData('size')
-            );
-          }
+            var count = '<br/>' + this.getData('count');
+            if (this.getData('count') === 'null') count = '';
+            return (count);
         });
-
-      map
-        .tooltip()
-        .background()
-        .enabled(true)
-        .fill('#fff')
-        .stroke('#c1c1c1')
-        .corners(3)
-        .cornerType('round');
 
       // create zoom controls
       var zoomController = anychart.ui.zoom();
@@ -93,4 +76,4 @@ const BubbleWorldMap = ({
   );
 };
 
-export default BubbleWorldMap;
+export default DotMap;
