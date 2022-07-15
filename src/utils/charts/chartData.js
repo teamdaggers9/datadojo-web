@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export const multiSeriesColumnChartData = {
     rows: [
       ['Project A', 6814, 3054],
@@ -6,7 +5,6 @@ export const multiSeriesColumnChartData = {
       ['Project C', 8814, 9054]
     ]
   };
-=======
 export const columnChartData = [
     ["John", 10000],
     ["Jake", 12000],
@@ -22,4 +20,3 @@ export const pieChartData = [
     { x: "Employee D", value: 78662 },
     { x: "Employee E", value: 90000 }
 ];
->>>>>>> origin/dev
