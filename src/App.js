@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Routes from "./routes";
 import { fetchCollections } from "./services/firebase";
 import Loader from './utils/components/loader';
+import './assets/css/custom.css';
 
 function App() {
   const [loading, setLoading] = React.useState(true);

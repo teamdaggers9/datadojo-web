@@ -1,28 +1,8 @@
-import Dashboard from "./pages/Dashboard";
-import Project from "./pages/Project";
-import SkillSet from "./pages/SkillSet";
 import Layout from "./layout/Layout";
 import Error from "./pages/Error";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-const pages = [
-  {
-    title: "Dashboard",
-    url: "/",
-    component: <Dashboard />,
-  },
-  {
-    title: "Project",
-    url: "/project",
-    component: <Project />,
-  },
-  {
-    title: "Skill Set",
-    url: "/skill-set",
-    component: <SkillSet />,
-  },
-];
+import pages from "./config/pages";
 
 const Routes = () => {
   return (

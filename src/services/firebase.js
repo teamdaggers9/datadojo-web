@@ -44,6 +44,7 @@ export const fetchCollections = async () => {
     try {
       const projects = await fetchProjects();
       const candidates = await fetchCandidates();
+      console.log({ projects, candidates });
       resolve({ projects, candidates });
     } catch (error) {
       console.log(error);
