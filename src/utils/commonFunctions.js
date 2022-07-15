@@ -16,5 +16,7 @@ export const getRandomValue = (type, length = 20) => {
       return Array.from(crypto.getRandomValues(new Uint32Array(length)))
         .map((x) => mixedWishlist[x % mixedWishlist.length])
         .join("");
+    default:
+      return;
   }
 };
