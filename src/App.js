@@ -9,12 +9,14 @@ import * as MOCK_DATA from "./mock-data/MOCK_DATA.json";
 function App() {
   const [loading, setLoading] = React.useState(true);
   const fetchMasterData = async () => {
-    // createNewCollection('projects', MOCK_DATA.default);
     await fetchCollections();
     setLoading(false);
   };
 
   useEffect(() => {
+    console.log('userEffect');
+    console.log({ dataSet: MOCK_DATA.default });
+    // createNewCollection('projects', MOCK_DATA.default);
     fetchMasterData();
   }, []);
 

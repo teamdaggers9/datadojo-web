@@ -19,7 +19,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row">
-        <div class="col-lg-6 col-xl-6">
+        <div class="col-lg-12 col-xl-12">
           <div class="card">
             <ProjectGraph />
           </div>
