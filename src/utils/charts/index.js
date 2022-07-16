@@ -4,6 +4,7 @@ import MultiSeriesColumnChart from "./MultiSeriesColumnChart";
 import BubbleWorldMap from "./BubbleWorldMap";
 import DotMap from "./DotMap";
 import RangeBarChart from "./RangeBarChart";
+import SpiderWeb from "./SpiderWeb";
 
 export {
     ColumnChart,
@@ -11,5 +12,6 @@ export {
     MultiSeriesColumnChart,
     BubbleWorldMap,
     DotMap,
-    RangeBarChart
+    RangeBarChart,
+    SpiderWeb
 }

@@ -92,6 +92,16 @@ export const dotmapData = [
   },
 ];
 
+export const spiderWebData = {
+  rows: [
+    ['HTML', 1],
+    ['CSS', 2],
+    ['JavaScript', 3],
+    ['React', 2],
+    ['Shell', 4]
+  ]
+};
+
 export const columnChartData = [
   ["John", 10000],
   ["Jake", 12000],
