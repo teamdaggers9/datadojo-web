@@ -2,13 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import pages from "../config/pages";
 
-const SideNavbar = () => {
+const SideNavbar = ({ isActive, clicked }) => {
   return (
-    <div className="leftNav">
+    <div className={isActive ? "leftNav active" : "leftNav"}>
       <h1 className="siteLogo">
-        <Link to="/">
-          <img src={require("../assets/images/logo.png")} />
-        </Link>
+        <Link to="/"></Link>
+        <span className={isActive ? "menuToggler active" : "menuToggler"} onClick={clicked}>
+          <img
+            src={require("../assets/images/icon-arrow-left.svg")}
+            alt="Data Dojo"
+          />
+        </span>
       </h1>
       <ul className="maninMenu">
         {pages.map(({ title, url, logo }) => (

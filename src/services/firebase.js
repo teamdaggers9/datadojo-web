@@ -39,6 +39,13 @@ const fetchCandidates = () => {
   });
 };
 
+export const createNewCollection = (collectionName, dataSet) => {
+  console.log("createNewCollection");
+  for (const data of Object.values(dataSet)) {
+    firebase.firestore().collection(collectionName).add(data);
+  }
+};
+
 export const fetchCollections = async () => {
   return new Promise(async (resolve, reject) => {
     try {
