@@ -6,7 +6,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
 
   useEffect(() => {
     isAnychartReady && anychart && renderChart();
-  }, [chartTitle, chartData, isAnychartReady, anychart]);
+  }, [chartTitle, chartData, isAnychartReady, anychart, height]);
 
   const renderChart = () => {
     anychart.onDocumentReady(() => {
@@ -71,7 +71,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
     <div
       id={`container${cId}`}
       className="chartContainer"
-      style={{ height: "400px" }}
+      style={{ height }}
     />
   );
 };
