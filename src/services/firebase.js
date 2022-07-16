@@ -3,7 +3,7 @@ import "firebase/compat/firestore";
 import store from "../store/MasterStore";
 
 const projectCollection = "projects";
-const candidateCollection = "candidates";
+const candidateCollection = "workforce";
 
 const fetchProjects = () => {
   return new Promise(async (resolve, reject) => {

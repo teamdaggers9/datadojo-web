@@ -15,7 +15,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
 
       // Creates Map Chart
       var map = anychart.map();
-      map.geoData('anychart.maps.world').padding(0);
+      map.geoData("anychart.maps.world").padding(0);
 
       // Sets Chart Title
       map
@@ -28,17 +28,17 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
       var dataSet = anychart.data.set(chartData);
       let series = map.marker(dataSet);
       series
-      .fill('#ff8f00')
-      .stroke('1 #ff8f00')
-      .type('circle')
-      .size(4)
-      .labels(false)
-      .selectionMode('none');
+        .fill("#ff8f00")
+        .stroke("1 #ff8f00")
+        .type("circle")
+        .size(4)
+        .labels(false)
+        .selectionMode("none");
 
       // Enables map tooltip and sets settings for tooltip
-      map.tooltip().title().fontColor('#fff');
+      map.tooltip().title().fontColor("#fff");
       map.tooltip().titleFormat(function () {
-        return this.getData('place');
+        return this.getData("place");
       });
 
       map
@@ -47,11 +47,11 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
         .padding([8, 13, 10, 13])
         .width(350)
         .fontSize(12)
-        .fontColor('#e6e6e6')
+        .fontColor("#e6e6e6")
         .format(function () {
-            var count = '<br/>' + this.getData('count');
-            if (this.getData('count') === 'null') count = '';
-            return (count);
+          var count = this.getData("count");
+          if (this.getData("count") === "null") count = "";
+          return count;
         });
 
       // create zoom controls
@@ -68,11 +68,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
   };
 
   return (
-    <div
-      id={`container${cId}`}
-      className="chartContainer"
-      style={{ height }}
-    />
+    <div id={`container${cId}`} className="chartContainer" style={{ height }} />
   );
 };
 

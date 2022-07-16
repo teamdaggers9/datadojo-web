@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { AppSetting } from "../config/appSettings";
 import { ColumnChart, MultiSeriesColumnChart } from "../utils/charts";
-import {
-  projectDurationData,
-  projectEffortData,
-  estimatedCost,
-  bugsReported,
-  teamStrength,
-} from "../utils/charts/chartData";
 import { getRandomValue } from "../utils/commonFunctions";
 import store from "../store/MasterStore";
 import config from "../config/config";
