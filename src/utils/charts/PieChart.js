@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useAnychart } from '../../hooks/useAnyChart'
 
-const containerId = 'pieChart'
 
-const PieChart = ( { chartData, chartTitle, height } ) => {
+
+const PieChart = ( { chartData, chartTitle, cId, height } ) => {
 
     const { anychart, isAnychartReady } = useAnychart();
+    const containerId = `container${cId}`
 
     useEffect(() => {
         isAnychartReady && anychart && renderChart();
@@ -14,7 +15,8 @@ const PieChart = ( { chartData, chartTitle, height } ) => {
     function renderChart() {
 
         anychart.onDocumentReady(() => {
-
+            const chartElement = document.getElementById(containerId);
+            if (chartElement !== null) chartElement.innerHTML = "";
             const chart = anychart.pie(chartData);
 
             chart.title(chartTitle);

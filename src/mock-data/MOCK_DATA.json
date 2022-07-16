@@ -9,10 +9,16 @@
     "team_strength": 5,
     "bugs_reported": 74,
     "planned_effort": 1689,
-    "start_data": "5/20/2022",
+    "start_date": "5/20/2022",
     "estimated_completion_date": "6/22/2022",
     "actual_completion_date": "12/11/2021",
-    "debug_time": 266
+    "debug_time": 266,
+    "revision history": [
+      {
+        "start_date": "5/20/2022",
+        "end_date": "6/22/2022"
+      }
+    ]
   },
   "-N74nvC8EOA2wBv5TCVJ": {
     "project_id": 2,
@@ -24,10 +30,16 @@
     "team_strength": 25,
     "bugs_reported": 80,
     "planned_effort": 1786,
-    "start_data": "5/21/2022",
+    "start_date": "5/21/2022",
     "estimated_completion_date": "5/29/2022",
     "actual_completion_date": "4/14/2022",
-    "debug_time": 184
+    "debug_time": 184,
+    "revision history": [
+      {
+        "start_date": "5/21/2022",
+        "end_date": "5/29/2022"
+      }
+    ]
   },
   "-N74nvCBQMiSNX8KIuM8": {
     "project_id": 3,
@@ -39,10 +51,20 @@
     "team_strength": 21,
     "bugs_reported": 80,
     "planned_effort": 828,
-    "start_data": "2/15/2020",
+    "start_date": "2/15/2020",
     "estimated_completion_date": "6/20/2022",
     "actual_completion_date": "7/12/2022",
-    "debug_time": 91
+    "debug_time": 91,
+    "revision history": [
+      {
+        "start_date": "2/15/2020",
+        "end_date": "6/20/2022"
+      },
+      {
+        "start_date": "8/15/2021",
+        "end_date": "7/20/2022"
+      }
+    ]
   },
   "-N74nvCDgUYG_MOeNs0Z": {
     "project_id": 4,
@@ -54,10 +76,20 @@
     "team_strength": 29,
     "bugs_reported": 82,
     "planned_effort": 1908,
-    "start_data": "5/15/2020",
+    "start_date": "5/15/2020",
     "estimated_completion_date": "10/30/2021",
     "actual_completion_date": "12/19/2021",
-    "debug_time": 213
+    "debug_time": 213,
+    "revision history": [
+      {
+        "start_date": "5/15/2020",
+        "end_date": "10/30/2021"
+      },
+      {
+        "start_date": "5/15/2021",
+        "end_date": "6/19/2021"
+      }
+    ]
   },
   "-N74nvCFez0WWIHYt2-W": {
     "project_id": 5,
@@ -69,10 +101,20 @@
     "team_strength": 23,
     "bugs_reported": 88,
     "planned_effort": 612,
-    "start_data": "3/15/2020",
+    "start_date": "3/15/2020",
     "estimated_completion_date": "7/3/2022",
     "actual_completion_date": "1/27/2022",
-    "debug_time": 187
+    "debug_time": 187,
+    "revision history": [
+      {
+        "start_date": "3/15/2020",
+        "end_date": "7/3/2022"
+      },
+      {
+        "start_date": "5/3/2022",
+        "end_date": "8/3/2022"
+      }
+    ]
   },
   "-N74nvCH0xouSMl85wMZ": {
     "project_id": 6,
@@ -84,10 +126,20 @@
     "team_strength": 17,
     "bugs_reported": 56,
     "planned_effort": 929,
-    "start_data": "5/15/2021",
+    "start_date": "5/15/2021",
     "estimated_completion_date": "7/5/2022",
     "actual_completion_date": "3/10/2022",
-    "debug_time": 136
+    "debug_time": 136,
+    "revision history": [
+      {
+        "start_date": "5/15/2021",
+        "end_date": "7/5/2022"
+      },
+      {
+        "start_date": "7/15/2021",
+        "end_date": "2/10/2022"
+      }
+    ]
   },
   "-N74nvCJI7Lkit6tKK7N": {
     "project_id": 7,
@@ -99,10 +151,20 @@
     "team_strength": 21,
     "bugs_reported": 100,
     "planned_effort": 1803,
-    "start_data": "5/10/2021",
+    "start_date": "5/10/2021",
     "estimated_completion_date": "10/11/2021",
     "actual_completion_date": "11/11/2021",
-    "debug_time": 50
+    "debug_time": 50,
+    "revision history": [
+      {
+        "start_date": "5/10/2021",
+        "end_date": "10/11/2021"
+      },
+      {
+        "start_date": "6/11/2021",
+        "end_date": "10/11/2021"
+      }
+    ]
   },
   "-N74nvCLtvIiXPOszLp2": {
     "project_id": 8,
@@ -114,10 +176,20 @@
     "team_strength": 24,
     "bugs_reported": 67,
     "planned_effort": 1238,
-    "start_data": "15/12/2021",
+    "start_date": "5/12/2019",
     "estimated_completion_date": "9/17/2021",
     "actual_completion_date": "3/10/2022",
-    "debug_time": 277
+    "debug_time": 277,
+    "revision history": [
+      {
+        "start_date": "5/12/2019",
+        "end_date": "9/17/2021"
+      },
+      {
+        "start_date": "1/17/2022",
+        "end_date": "2/10/2022"
+      }
+    ]
   },
   "-N74nvCN-mCToks4fLeP": {
     "project_id": 9,
@@ -129,10 +201,16 @@
     "team_strength": 8,
     "bugs_reported": 99,
     "planned_effort": 879,
-    "start_data": "5/5/2022",
+    "start_date": "5/5/2022",
     "estimated_completion_date": "8/17/2021",
     "actual_completion_date": "10/3/2021",
-    "debug_time": 210
+    "debug_time": 210,
+    "revision history": [
+      {
+        "start_date": "5/5/2022",
+        "end_date": "8/17/2021"
+      }
+    ]
   },
   "-N74nvCP7PHNzHHcCY3Q": {
     "project_id": 10,
@@ -144,9 +222,15 @@
     "team_strength": 20,
     "bugs_reported": 61,
     "planned_effort": 1591,
-    "start_data": "25/10/2020",
+    "start_date": "2/10/2020",
     "estimated_completion_date": "1/4/2022",
     "actual_completion_date": "5/26/2022",
-    "debug_time": 150
+    "debug_time": 150,
+    "revision history": [
+      {
+        "start_date": "2/10/2020",
+        "end_date": "1/4/2022"
+      }
+    ]
   }
 }

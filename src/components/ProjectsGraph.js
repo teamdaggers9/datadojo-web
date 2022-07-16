@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { AppSetting } from "../config/appSettings";
 import { ColumnChart, MultiSeriesColumnChart } from "../utils/charts";
-import {
-  projectDurationData,
-  projectEffortData,
-  estimatedCost,
-  bugsReported,
-  teamStrength,
-} from "../utils/charts/chartData";
 import { getRandomValue } from "../utils/commonFunctions";
 import store from "../store/MasterStore";
 import config from "../config/config";
@@ -22,6 +15,7 @@ const ProjectGraph = () => {
 
   const EstVsActualDuration = () => {
     const header = ["#", "Estimated", "Actual"];
+    console.log(projects);
     const rows = projects.map(
       ({
         project_name,
@@ -30,6 +24,17 @@ const ProjectGraph = () => {
         actual_completion_date,
         status,
       }) => {
+        if (project_name === "Voyatouch") {
+          console.log({
+            project_name,
+            start_date,
+            estimated_completion_date,
+            actual_completion_date,
+            days: moment(start_date).diff(moment(null), "days"),
+            val1: dayDiff(start_date, estimated_completion_date),
+            val2: dayDiff(start_date, actual_completion_date),
+          });
+        }
         return [
           project_name,
           dayDiff(start_date, estimated_completion_date),
@@ -39,6 +44,7 @@ const ProjectGraph = () => {
         ];
       }
     );
+    console.log({ rows });
     return {
       header,
       rows,
@@ -46,7 +52,7 @@ const ProjectGraph = () => {
   };
 
   const dayDiff = (date1, date2) => {
-    return moment(date1).diff(moment(date2), "days");
+    return Math.abs(moment(date1).diff(moment(date2), "days"));
   };
 
   const EstVsActualEffort = () => {
@@ -155,37 +161,48 @@ const ProjectGraph = () => {
 
   return (
     <React.Fragment>
-      <div className="dropdown dropdownRight">
-        <button
-          type="button"
-          className="btnPrimary"
-          onClick={() => setIsVisible((prev) => !prev)}
-        >
-          {
-            AppSetting.projectGraphOptions.find(
-              (each) => each.value === currentOption
-            ).label
-          }{" "}
-          <i className="downArrow"></i>
-        </button>
-        <div className={`dropdownMenu ${isVisible ? "show" : ""}`}>
-          {AppSetting.projectGraphOptions.map((eachOption, index) => (
-            <a
-              className={`dropdownItem`}
-              href="#"
-              id={eachOption.value}
-              onClick={() => {
-                setCurrentOption(eachOption.value);
-                setIsVisible(false);
-              }}
-              key={index}
+      <div className="card">
+        <div className="card-header">
+          <h4 className="card-title">
+            {
+              AppSetting.projectGraphOptions.find(
+                (each) => each.value === currentOption
+              ).label
+            }
+          </h4>
+          <div className="dropdown dropdownRight">
+            <button
+              type="button"
+              className="btnPrimary"
+              onClick={() => setIsVisible((prev) => !prev)}
             >
-              {eachOption.label}
-            </a>
-          ))}
+              {
+                AppSetting.projectGraphOptions.find(
+                  (each) => each.value === currentOption
+                ).label
+              }{" "}
+              <i className="downArrow"></i>
+            </button>
+            <div className={`dropdownMenu ${isVisible ? "show" : ""}`}>
+              {AppSetting.projectGraphOptions.map((eachOption, index) => (
+                <a
+                  className={`dropdownItem`}
+                  href="#"
+                  id={eachOption.value}
+                  onClick={() => {
+                    setCurrentOption(eachOption.value);
+                    setIsVisible(false);
+                  }}
+                  key={index}
+                >
+                  {eachOption.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
+        <div className="card-body">{selectMap(currentOption)}</div>
       </div>
-      <div className="card-body">{selectMap(currentOption)}</div>
     </React.Fragment>
   );
 };

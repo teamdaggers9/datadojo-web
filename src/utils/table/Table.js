@@ -11,7 +11,7 @@ const Table = ({ dataSet }) => {
     },
     {
       Header: "Project Start Date",
-      accessor: "start_data",
+      accessor: "start_date",
       order_id: 2,
     },
     {
@@ -153,7 +153,7 @@ const Table = ({ dataSet }) => {
                   if (
                     accessor === "estimated_completion_date" ||
                     accessor === "actual_completion_date" ||
-                    accessor === "start_data" 
+                    accessor === "start_date" 
                   ) {
                     if (data["status"] === "Ongoing" && accessor === "actual_completion_date") {
                       return <td key={_index}> NA </td>

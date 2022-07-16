@@ -3,7 +3,19 @@ import "firebase/compat/firestore";
 import store from "../store/MasterStore";
 
 const projectCollection = "projects";
-const candidateCollection = "candidates";
+const candidateCollection = "workforce";
+
+const compareFunc = (a, b) => {
+  const project_a = a.project_name.toLowerCase();
+  const project_b = b.project_name.toLowerCase();
+  if (project_a < project_b) {
+    return -1;
+  }
+  if (project_a > project_b) {
+    return 1;
+  }
+  return 0;
+};
 
 const fetchProjects = () => {
   return new Promise(async (resolve, reject) => {
@@ -12,7 +24,10 @@ const fetchProjects = () => {
         .firestore()
         .collection(projectCollection)
         .get();
-      const projects = querySnapshot.docs.map((doc) => doc.data());
+      const projects = querySnapshot.docs
+        .map((doc) => doc.data())
+        .sort(compareFunc);
+      console.log({ projects });
       store.getState().setProjects(projects);
       resolve(projects);
     } catch (error) {
