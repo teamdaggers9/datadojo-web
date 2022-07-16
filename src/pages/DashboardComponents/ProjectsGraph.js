@@ -5,7 +5,7 @@ import { projectDurationData, projectEffortData, estimatedCost, bugsReported, te
 import { getRandomValue } from "../../utils/commonFunctions";
 const ProjectGraph = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentOption, setCurrentOption] = useState(null);
+  const [currentOption, setCurrentOption] = useState(1);
 
   const selectMap = (currentOption) => {
     switch (currentOption) {
@@ -14,8 +14,8 @@ const ProjectGraph = () => {
           <MultiSeriesColumnChart
             chartTitle={"Estimated vs Actual Duration"}
             chartData={projectDurationData}
-            xAxisTitle={"Hours"}
-            yAxisTitle={"Project"}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Hours"}
             cId={getRandomValue("number", 3)}
           />
         );
@@ -24,8 +24,8 @@ const ProjectGraph = () => {
           <MultiSeriesColumnChart
             chartTitle={"Planned vs Actual Effort"}
             chartData={projectEffortData}
-            xAxisTitle={"Hours"}
-            yAxisTitle={"Project"}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Hours"}
             cId={getRandomValue("number", 3)}
           />
         );
@@ -34,8 +34,8 @@ const ProjectGraph = () => {
           <ColumnChart
             chartTitle={"Estimated Cost"}
             chartData={estimatedCost}
-            xAxisTitle={"Hours"}
-            yAxisTitle={"Project"}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Cost"}
             cId={getRandomValue("number", 3)}
           />
         );
@@ -44,8 +44,8 @@ const ProjectGraph = () => {
           <ColumnChart
             chartTitle={"Bugs Reported"}
             chartData={bugsReported}
-            xAxisTitle={"Hours"}
-            yAxisTitle={"Project"}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Bugs"}
             cId={getRandomValue("number", 3)}
           />
         );
@@ -54,8 +54,8 @@ const ProjectGraph = () => {
           <ColumnChart
             chartTitle={"Team Strength"}
             chartData={teamStrength}
-            xAxisTitle={"Hours"}
-            yAxisTitle={"Project"}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Team Strength"}
             cId={getRandomValue("number", 3)}
           />
         );
@@ -71,7 +71,7 @@ const ProjectGraph = () => {
             class="btnPrimary"
             onClick={() => setIsVisible((prev) => !prev)}
           >
-            Graph Type <i class="downArrow"></i>
+            {AppSetting.projectGraphOptions.find((each)=>each.value===currentOption).label} <i class="downArrow"></i>
           </button>
           <div class={`dropdownMenu ${isVisible ? "show" : ""}`}>
             {AppSetting.projectGraphOptions.map((eachOption) => (
