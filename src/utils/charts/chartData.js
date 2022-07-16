@@ -1,3 +1,14 @@
+export const rangeBarChartData = [
+  { low: 13, high: 40, model: 'SureTalk S1' },
+  { low: 17, high: 41, model: 'SureTalk S2.05' },
+  { low: 10, high: 39, model: 'Eclipse Mobile' },
+  { low: 12, high: 55, model: 'Blazen Mobile' },
+  { low: 13, high: 46, model: 'Globular S435' },
+  { low: 12, high: 38, model: 'Globular I775' },
+  { low: 15, high: 44, model: 'Initech' },
+  { low: 14, high: 50, model: 'MusiCone' }
+];
+
 export const multiSeriesColumnChartData = {
   header: ["#", "Estimated", "Actual"],
   rows: [

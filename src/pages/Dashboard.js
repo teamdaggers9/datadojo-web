@@ -4,15 +4,17 @@ import {
   BubbleWorldMap,
   DotMap,
   ColumnChart,
-  PieChart
-} from "../utils/charts/index";
+  PieChart,
+  RangeBarChart
+} from "../utils/charts";
 import {
   bubbleWorldMapData,
   dotmapData,
   multiSeriesColumnChartData,
   columnChartData,
-  pieChartData
-} from "../utils/charts/chartData";
+  pieChartData,
+  rangeBarChartData
+} from "../utils/charts/ChartData";
 import { getRandomValue } from "../utils/commonFunctions";
 import { usePageTitle } from "../hooks/pageTitle";
 const Dashboard = () => {
@@ -32,6 +34,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
       <div className="col-lg-6 col-xl-6">
         <div className="card">
           <div className="card-body">
@@ -43,6 +46,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
       <div className="col-lg-6 col-xl-6">
         <div className="card">
           <div className="card-body">
@@ -54,24 +58,42 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
       <div className="col-lg-6 col-xl-6">
         <div className="card">
           <div className="card-body">
             <ColumnChart
               chartData={columnChartData}
+              chartTitle={"Column Chart"}
             />
           </div>
         </div>
       </div>
+
       <div className="col-lg-6 col-xl-6">
         <div className="card">
           <div className="card-body">
             <PieChart
               chartData={pieChartData}
+              chartTitle={"Pie chart"}
             />
           </div>
         </div>
       </div>
+
+      <div className="col-lg-6 col-xl-6">
+        <div className="card">
+          <div className="card-body">
+            <RangeBarChart
+              chartData={rangeBarChartData}
+              chartTitle={"Range Bar Chart"}
+              xAxisTitle={"X-Title"}
+              yAxisTitle={"Y-Title"}
+            />
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };

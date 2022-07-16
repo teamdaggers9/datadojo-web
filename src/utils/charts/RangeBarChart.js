@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useAnychart } from '../../hooks/useAnyChart'
 
-const containerId = 'colChart'
+const containerId = "rangeBarChart"
 
-const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) => {
+const RangeBarChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height = 400 }) => {
+
     const { anychart, isAnychartReady } = useAnychart();
 
     useEffect(() => {
@@ -17,9 +18,18 @@ const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) 
             const chartElement = document.getElementById(containerId);
             if (chartElement !== null) chartElement.innerHTML = "";
 
-            const chart = anychart.column()
+            const chart = anychart.bar()
 
-            const series = chart.column(chartData)
+            // create area series with passed data
+            const ranges_data = anychart.data.set(chartData)
+
+            const data = ranges_data.mapAs({ 'x': 'model' });
+            const series = chart.rangeBar(data);
+            chart.title(chartTitle);
+            chart.xAxis().title(xAxisTitle);
+            chart.yAxis().title(yAxisTitle);
+            // set the selection color
+
             series.fill({ keys: ["#f9c54f", "#e46858"], angle: 90, opacity: 1 });
             series.stroke({
                 keys: ["#f9c54f", "#e46858"],
@@ -28,12 +38,10 @@ const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) 
                 lineCap: "round",
                 thickness: 0.5,
             });
-            series.name("Actual Data");
-            chart.title(chartTitle);
+            series.selected()
+            .fill("#e46858")
+            .stroke("#f9c54f")
 
-            // set the titles of the axes
-            chart.xAxis().title(xAxisTitle);
-            chart.yAxis().title(yAxisTitle);
             chart.width("99%");
             chart.maxPointWidth("10%");
             chart.minPointLength(5);
@@ -47,15 +55,13 @@ const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) 
     }
 
     return (
-        <React.Fragment>
-            <div
-                id={containerId}
-                style={{
-                    height
-                }}
-            />
-        </React.Fragment>
+        <div
+            id={containerId}
+            style={{
+                height
+            }}
+        />
     )
 }
 
-export default ColumnChart
+export default RangeBarChart
