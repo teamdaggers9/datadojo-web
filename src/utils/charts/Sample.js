@@ -1,237 +1,236 @@
+// import { useAppSelector } from "app/hooks";
 // import { useAnychart } from "hooks/useAnychart";
+// import { IGraphDatum } from "models/interfaces";
 // import {
-//   IGraphData,
-//   IInterval,
-//   IIntervalWithDate,
-//   ILabel,
-// } from "models/interfaces";
-// import { chartFilterType } from "models/types/Reports/chartFilterType";
-// import { graphType } from "models/types/Reports/graphType";
-// import moment from "moment";
-// import React, { useEffect, useState } from "react";
-// import GraphFilters from "./GraphFilters";
-// import { chartProperties } from "./grossProfitSnapshotUtils";
+//   isLoadingTrendData,
+//   metadataTrendData,
+// } from "models/Slices/EventManagementSlice";
+// import { dateType } from "models/types";
+// import { useEffect, useState } from "react";
+// import { isMobile } from "react-device-detect";
+// import { getCurrentDate, getCustomDate, getDateDiff, getDateObject } from "utils/formatTimePeriod";
+// import LoadingSpinner from "utils/sharedComponents/LoadingSpinner";
 
-// declare global {
-//   interface Window {
-//     anychart: any;
-//   }
-// }
-
-// const ProfitGraph = ({ data, currency, cId, setIsLoading }) => {
-//   const [chartType, setChartType] = useState<graphType>("column");
-//   const [dayChartData, setDayChartData] = useState<IInterval[]>([]);
-//   const [weekChartData, setWeekChartData] = useState<IIntervalWithDate[]>([]);
-//   const [monthChartData, setMonthChartData] = useState<IInterval[]>([]);
-//   const [quarterChartData, setQuarterChartData] = useState<IIntervalWithDate[]>([]);
-//   const [yearChartData, setYearChartData] = useState<IInterval[]>([]);
-//   const [chartDataSummary, setChartDataSummary] = useState<ILabel[]>([]);
-//   const [defaultChartData, setDefaultChartData] = useState<IInterval[]>([]);
-//   const [activeFilter, setActiveFilter] = useState<chartFilterType>(null);
+// const AvailabilityTrendGraph: React.FC = () => {
+//   const trendMetadata = useAppSelector(metadataTrendData);
+//   const isLoading = useAppSelector(isLoadingTrendData);
+//   const [minDate, setMinDate] = useState<dateType>(null);
+//   const [graphData, setGraphData] = useState<IGraphDatum[]>([]);
+//   const [eventDate, setEventDate] = useState<dateType>(null);
 //   const {anychart, isAnychartReady} = useAnychart();
-//   /************************|Chart filter handlers|******************************/
-
-//   const chartTypeHandler = (type: graphType) => {
-//     setChartType(type);
-//   };
-
-//   const chartFilterHandler = (filterType: chartFilterType) => {
-//     setActiveFilter(filterType);
-//     switch (filterType) {
-//       case "day":
-//         setDefaultChartData(dayChartData);
-//         break;
-//       case "week":
-//         setDefaultChartData(weekChartData);
-//         break;
-//       case "month":
-//         setDefaultChartData(monthChartData);
-//         break;
-//       case "quarter":
-//         setDefaultChartData(quarterChartData);
-//         break;
-//       case "year":
-//         setDefaultChartData(yearChartData);
-//         break;
-//     }
-//   };
-
-//   /************************************************************************/
 
 //   useEffect(() => {
-//     setDayChartData(data ? data.day : []);
-//     setWeekChartData(data ? data.week : []);
-//     setMonthChartData(data ? data.month : []);
-//     setQuarterChartData(data ? data.quarter : []);
-//     setYearChartData(data ? data.year : []);
-//     setChartDataSummary(data ? data.all : []);
-//   }, [data]);
-
-//   useEffect(() => {
-//     const timeInterval = chartDataSummary?.length;
-//     if (timeInterval <= 31) {
-//       setDefaultChartData(dayChartData);
-//       chartFilterHandler("day");
-//     } else if (timeInterval >= 30 && timeInterval < 365) {
-//       setDefaultChartData(monthChartData);
-//       chartFilterHandler("month");
-//     } else {
-//       setDefaultChartData(yearChartData);
-//       chartFilterHandler("year");
-//     }
-//   }, [chartDataSummary]);
-
-//   useEffect(() => {
-//     isAnychartReady && anychart && renderChart();
-//   }, [defaultChartData, chartType]);
-
-//   function renderChart() {
-//     setIsLoading(true);
-//     const currencyCode = currency === 1 ? "USD" : "CAD";
-
-//     const enableMarkers =
-//       chartType === "column" || defaultChartData?.length > 50 ? false : true;
-    
-//     anychart.format.inputDateTimeFormat("yyyy-MM-dd HH:mm:ss");
-
-//     anychart.onDocumentReady(() => {
-//       const chartElement = document.getElementById(`container${cId}`);
-//       if (chartElement !== null) chartElement.innerHTML = "";
-
-//       var chart = anychart.fromJson(chartProperties.json);
-
-//       var dataSet = anychart.data.set(defaultChartData);
-
-//       var mapping = dataSet.mapAs({ x: "label", value: "value" });
-
-//       var series = chart.area(mapping);
-
-//       series.seriesType(chartType);
-
-//       /********************| Chart Formatting |**********************/
-
-//       chart.width('99%');
-//       if (defaultChartData?.length > 0) {
-//         chart.lineMarker(0, {
-//           value: 0,
-//           stroke: "1.5 #cecece",
-//           axis: chart.yAxis(),
-//           scale: chart.yScale(),
-//         });
+//     if (trendMetadata) {
+//       if (trendMetadata?.eventData && trendMetadata?.trendData?.length) {
+//         setMinDate(getDateObject(trendMetadata?.start_date));
+//         setEventDate(getDateObject(trendMetadata?.eventData?.event_date));
 //       }
+//       if (trendMetadata?.graphData?.length) {
+//         setGraphData(trendMetadata?.graphData);
+//       }
+//     }
+//   }, [trendMetadata]);
 
-//       var yAxisLabels = chart.yAxis().labels();
-//       yAxisLabels.fontFamily("Roboto");
-//       yAxisLabels.fontSize(12);
-//       yAxisLabels.fontColor("#4171B9");
-//       yAxisLabels.fontWeight("bold");
-//       yAxisLabels.useHtml(false);
-//       yAxisLabels.format("{%Value}{groupsSeparator:\\,}");
+  
+//   isAnychartReady && anychart.onDocumentReady(() => {
+//     const chartElement = document.getElementById(`container`);
+//     if (chartElement !== null) chartElement.innerHTML = "";
+//     // create a chart
+//     var chart = anychart.bar();
 
-//       var xAxisLabels = chart.xAxis().labels();
-//       xAxisLabels.fontFamily("Roboto");
-//       xAxisLabels.fontSize(12);
-//       xAxisLabels.fontColor("#4171B9");
-//       xAxisLabels.fontWeight("bold");
-//       xAxisLabels.useHtml(false);
+//     chart.width("97%");
 
-//       chart.yScale().softMinimum(0);
-//       chart.yScale().softMaximum(0);
+//     graphData?.map((each, i) => {
+//       let diffInDays = getDateDiff(each?.series[i]?.high, each?.series[i]?.low);
+//       const series = chart.rangeBar(each?.series);
+//       //Tooltip title settings
+//       var title = chart.tooltip().title();
+//       title.fontFamily("Roboto,sans-serif");
+//       title.fontSize(12);
 
-//       chart.tooltip(true);
-//       chart.tooltip().useHtml(true);
-//       chart.tooltip().titleFormat((x: any) => {
-//         if (activeFilter === "week") {
-//           const currentWeek = weekChartData.find((week) => week.label === x.x);
-//           const startDate = currentWeek?.startDate;
-//           const endDate = currentWeek?.endDate;
-//           return (
-//             moment(startDate).format("MMM DD, YY") +
-//             " - " +
-//             moment(endDate).format("MMM DD, YY")
-//           );
-//         }
-//         else if(activeFilter === "quarter") {
-//           const currentQuarter = quarterChartData.find((quarter) => quarter.label === x.x);
-//           const startDate = currentQuarter?.startDate;
-//           const endDate = currentQuarter?.endDate;
-//           return (
-//             moment(startDate).format("MMM DD, YY") +
-//             " - " +
-//             moment(endDate).format("MMM DD, YY")
-//           );
-//         }
-//          else return x.x;
+//       //Tooltip Body Settings
+//       let tooltip = chart.getSeries(i).tooltip();
+//       tooltip.format((data: any) => {
+//         return `Cost: $${data.getData("cost")}\nStart: ${data.low}\nEnd: ${
+//           data.high
+//         }`;
 //       });
-//       chart.tooltip().format(`${currencyCode} {%value}{groupsSeparator:\\,}`);
-//       chart.tooltip().positionMode("point");
-//       chart.tooltip().position("center-top");
-//       chart.tooltip().anchor("center-bottom");
+//       tooltip.fontColor("white");
+//       tooltip.fontFamily("Roboto,sans-serif");
+//       tooltip.fontSize(12);
 
-//       var roundBackground = chart.background();
-//       // set corner type
-//       roundBackground.cornerType("round");
-//       // apply corner type only for top-left and bottom-right corners.
-//       roundBackground.corners(10, 10, 0, 0);
-
-//       chart.crosshair(true);
-//       chart.crosshair().xStroke(null);
-//       chart.crosshair().xLabel(false);
-//       chart
-//         .crosshair()
-//         .yLabel()
-//         .format("{%Value}{groupsSeparator:\\,}")
-//         .fontFamily("Roboto");
-//       chart.crosshair().yStroke("#cecece", 1);
-
-//       chart.maxPointWidth("30%");
-//       chart.minPointLength(5);
-
-//       series.markers(enableMarkers);
-//       series.normal(chartProperties.normal);
-//       series.hovered(chartProperties.hovered);
-//       series.selected(chartProperties.selected);
-
-//       var noData = chart.noData();
-
-//       // Set label settings
-//       noData.label({
-//         text: "Chart has no data.",
-//         fontColor: "#B0C0D7",
-//         fontFamily: "Roboto",
-//         fontWeight: "500",
-//       });
-
-//       chart.yGrid().enabled(true);
-
-//       chart.container(`container${cId}`);
-
-//       setIsLoading(false);
-//       chart.draw();
-
-//       document.getElementsByClassName("anychart-credits")[0].remove();
+//       //Series settings
+//       series.stroke(null);
+//       series.labels(diffInDays && diffInDays > 7 ? true : false);
+//       series.labels().format("${%cost}");
+//       series.labels().fontColor("white");
+//       series.labels().fontSize(10);
+//       series.labels().fontFamily("Roboto,sans-serif");
+//       series.labels().position("center");
 //     });
+
+//     var outputDateTimeFormat = "EEE, MMM dd, yyyy";
+//     var format = "MMM-DD";
+//     var locale = "en-us";
+
+//     anychart.format.outputLocale(locale);
+//     anychart.format.outputDateTimeFormat(outputDateTimeFormat);
+
+//     var dateScale = anychart.scales.dateTime();
+//     chart.yScale(dateScale);
+//     var yScale = chart.yScale();
+//     isMobile ? yScale.minimum(minDate).maximum(getCurrentDate()) : yScale.minimum(minDate).maximum(eventDate);
+
+//     // set highest line marker
+//     var lineMarker1 = chart.lineMarker(1);
+//     lineMarker1.value(getCurrentDate());
+//     lineMarker1.axis(chart.yAxis());
+//     lineMarker1.stroke("#4171B9", 1);
+
+//     //origin date text marker
+//     var text0 = chart.textMarker(0);
+//     text0.value(minDate);
+//     text0.axis(chart.yAxis());
+//     text0.text(getCustomDate(minDate, format));
+//     isMobile ? text0.fontSize("9px") : text0.fontSize("12px");
+//     text0.fontFamily("Roboto,sans-serif");
+//     text0.fontColor("#4171B9");
+//     text0.align("bottom");
+//     text0.anchor("right-bottom");
+//     isMobile ? text0.offsetX(-15) : text0.offsetX(-20);
+//     isMobile ? text0.offsetY(-20) : text0.offsetY(-25);
+//     text0.rotation(0);
+
+//     //highest line marker text
+//     var text1 = chart.textMarker(1);
+//     text1.value(getCurrentDate());
+//     text1.axis(chart.yAxis());
+//     text1.text(getCustomDate(getCurrentDate(),format));
+//     isMobile ? text1.fontSize("9px") : text1.fontSize("12px");
+//     text1.fontFamily("Roboto,sans-serif");
+//     text1.fontColor("#4171B9");
+//     isMobile ? text1.align("bottom") : text1.align("top");
+//     isMobile ? text1.anchor("left-bottom") : text1.anchor("left-top");
+//     isMobile ? text1.offsetX(-15) : text1.offsetX(3);
+//     isMobile ? text1.offsetY(-15) : text1.offsetY(-3);
+//     text1.rotation(0);
+
+//     //event date marker
+//     const days_to_event = getDateDiff(eventDate, getCurrentDate(), "d");
+//     if(days_to_event && days_to_event>0){
+//       var text2 = chart.textMarker(2);
+//       text2.value(eventDate);
+//       text2.axis(chart.yAxis());
+//       text2.text(getCustomDate(eventDate, format));
+//       text2.fontSize("12px");
+//       text2.fontFamily("Roboto,sans-serif");
+//       text2.fontColor("#4171B9");
+//       text2.align("bottom");
+//       text2.anchor("right-bottom");
+//       text2.offsetY(-25);
+//       text2.offsetX(-18);
+//       text2.rotation(0);
+//     }
+
+//     //x axis labels formatting
+//     var xLabels = chart.xAxis().labels();
+//     xLabels.wordWrap("break-word");
+//     isMobile ? xLabels.width(60) : xLabels.width(120);
+//     xLabels.hAlign("left");
+//     xLabels.fontFamily("Roboto,sans-serif");
+//     isMobile ? xLabels.fontSize("9px") : xLabels.fontSize("12px");
+//     xLabels.fontColor("#1A2A43");
+//     xLabels.format((data: any) => {
+//       return data.value.toUpperCase();
+//     });
+
+//     //y axis labels formatting
+//     var yLabels = chart.yAxis().labels();
+//     yLabels.fontColor("#4171B9");
+//     yLabels.fontFamily("Roboto,sans-serif");
+//     isMobile ? yLabels.fontSize("9px") : yLabels.fontSize("12px");
+//     isMobile && chart.yAxis().ticks().enabled(false);
+//     isMobile && chart.xAxis().ticks().enabled(false);
+
+//     yLabels.format((data: any) => {
+//       /* This here is done to fix a Safari Browser Render issue*/
+//       let temp = data.value.toString().split(' ');
+//       if(temp.length === 3) {
+//         return `${temp[1]}-${temp[2]}`;
+//       }
+//       else {
+//         return "";
+//       }
+//     });
+//     isMobile ? yLabels.enabled(false) : yLabels.enabled(graphData.length);
+    
+//     // wait until chart is displayed
+//     chart.listen("chartDraw", function () {
+//       let count = chart.yAxis().labels().getLabelsCount();
+//       // go to through all labels
+//       for (let i = 0; i < count; i++) {
+//         let label = chart.yAxis().labels().getLabel(i);
+//         let value = chart.yAxis().scale().ticks().get()[i];
+//         if (minDate && eventDate) {
+//           let zoneStartDate = new Date(minDate.toString()).getTime().toString();
+//           let zoneEndDate = new Date(eventDate.toString()).getTime().toString();
+//           if (
+//             value.toString() === zoneStartDate ||
+//             value.toString() === zoneEndDate ||
+//             parseInt(zoneEndDate) - value <= 273600000 ||
+//             value - parseInt(zoneStartDate) <= 417600000
+//           ) {
+//             label?.enabled(false);
+//             label?.draw();
+//           }
+//         }
+//       }
+//     });
+
+//     // set the padding between bars
+//     chart.barsPadding(-1);
+
+//     // set the padding between bar groups
+//     chart.barGroupsPadding(2);
+
+//     //point width
+//     chart.pointWidth(25);
+
+//     chart.padding(20);
+
+//     // no data settings
+//     var noData = chart.noData();
+//     noData.label({
+//       text: "Chart has no data.",
+//       fontColor: "#B0C0D7",
+//       fontFamily: "Roboto",
+//       fontWeight: "500",
+//     });
+
+//     // set container and draw chart
+//     chart.container("container");    
+//     chart.draw();
+//     document?.getElementsByClassName("anychart-credits")[0]?.remove();
+//   });
+  
+//   const getHeight = () => {
+//     if(isMobile) {
+//       return trendMetadata?.trendData.length ? trendMetadata?.trendData.length * 75 : 250;
+//     }
+//     return trendMetadata?.trendData.length ? trendMetadata?.trendData.length * 100 : 450;
 //   }
 
 //   return (
-//     <React.Fragment>
-//       <div id={`chart${cId}`} className={"chartWrapper"}>
-//         <div
-//           id={`container${cId}`}
-//           className="chartContainer"
-//           style={{ height: "400px" }}
-//         ></div>
-//         <div className="chartFilters">
-//           <GraphFilters
-//             chartFilterHandler={chartFilterHandler}
-//             chartTypeHandler={chartTypeHandler}
-//             chartType={chartType}
-//             activeFilter={activeFilter}
-//           />
+//     <div className="ant-col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-17 ant-col-xl-17">
+//       <LoadingSpinner isLoading={isLoading}>
+//         <h3>Availability Trend</h3>
+//         <div className={isMobile ? "chartWrapMobile" : "chartWrap"}>
+//           <div className="trendGraph" style={{minHeight: `${getHeight()}px`}} id="container"></div>
 //         </div>
-//       </div>
-//     </React.Fragment>
+//       </LoadingSpinner>
+//     </div>
 //   );
 // };
 
-// export default ProfitGraph;
+// export default AvailabilityTrendGraph;
+
