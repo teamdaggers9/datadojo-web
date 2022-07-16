@@ -1,3 +1,14 @@
+export const rangeBarChartData = [
+  { low: Date.UTC(2016, 1, 1), high: Date.UTC(2020, 1, 1), model: 'Project A' },
+  { low: Date.UTC(2017, 1, 1), high: Date.UTC(2018, 1, 1), model: 'Project B' },
+  { low: Date.UTC(2018, 1, 12), high: Date.UTC(2020, 7, 15), model: 'Project C' },
+  { low: Date.UTC(2020, 7, 10), high: Date.UTC(2021, 3, 1), model: 'Project D' },
+  { low: Date.UTC(2021, 7, 1), high: Date.UTC(2021, 9, 30), model: 'Project E' },
+  { low: Date.UTC(2021, 8, 30), high: Date.UTC(2021, 10, 20), model: 'Project F' },
+  { low: Date.UTC(2021, 12, 1), high: Date.UTC(2022, 1, 15), model: 'Project G' },
+  { low: Date.UTC(2021, 4, 1), high: Date.UTC(2022, 12, 1), model: 'Project H' }
+];
+
 export const multiSeriesColumnChartData = {
   header: ["#", "Estimated", "Actual"],
   rows: [
@@ -80,6 +91,16 @@ export const dotmapData = [
     long: 97.318123
   },
 ];
+
+export const spiderWebData = {
+  rows: [
+    ['HTML', 1],
+    ['CSS', 2],
+    ['JavaScript', 3],
+    ['React', 2],
+    ['Shell', 4]
+  ]
+};
 
 export const columnChartData = [
   ["John", 10000],

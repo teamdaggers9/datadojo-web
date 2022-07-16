@@ -141,23 +141,23 @@ const Table = ({ dataSet }) => {
           </tr>
         </thead>
         <tbody>
-          {dataSet.map((data) => {
+          {dataSet.map((data, index) => {
             return (
-              <tr key={data.project_name}>
-                {columns.sort(compareFunc).map(({ accessor }) => {
+              <tr key={index}>
+                {columns.sort(compareFunc).map(({ accessor }, index) => {
                   if (
                     accessor === "estimated_duration" ||
                     accessor === "actual_duration"
                   ) {
                     return (
-                      <td key={accessor}>
+                      <td key={index}>
                         {moment(data[accessor]).format("ll")}
                       </td>
                     );
                   }
                   if (accessor === "project_name") {
                     return (
-                      <td key={accessor} className={setClassName(accessor)}>
+                      <td key={index} className={setClassName(accessor)}>
                         <div className="projectImage">
                           <img
                             src="https://aspaceforphotography.com/wp-content/uploads/2017/11/f2637562392edd24809a100a0211e6f8-symbols-design-logo-icon-design.jpg"
@@ -170,7 +170,7 @@ const Table = ({ dataSet }) => {
                   }
                   if (accessor === "status") {
                     return (
-                      <td>
+                      <td key={index}>
                         <div className="statusWrap">
                           <i className={setStatusClassName(data[accessor])}></i>{" "}
                           {data[accessor]}
@@ -180,7 +180,7 @@ const Table = ({ dataSet }) => {
                   }
                   if (accessor === "planned_cost" || accessor === "actual_cost") {
                     return (
-                      <td key={accessor} className="txtRight">
+                      <td key={index} className="txtRight">
                         ${formatThousandSeparator(data[accessor])}
                       </td>
                     );
@@ -195,12 +195,12 @@ const Table = ({ dataSet }) => {
                     accessor === "bugs_reported"
                   ) {
                     return (
-                      <td key={accessor} className="txtRight">
+                      <td key={index} className="txtRight">
                         {data[accessor]}
                       </td>
                     );
                   }
-                  return <td key={accessor}>{data[accessor]}</td>;
+                  return <td key={index}>{data[accessor]}</td>;
                 })}
               </tr>
             );
