@@ -26,7 +26,7 @@ const ProjectGraph = () => {
             chartData={projectEffortData}
             xAxisTitle={"Project"}
             yAxisTitle={"Hours"}
-            cId={getRandomValue("number", 3)}
+            cId={getRandomValue("number", 4)}
           />
         );
       case 3:

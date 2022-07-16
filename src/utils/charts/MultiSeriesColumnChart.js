@@ -15,7 +15,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
       // create column chart
       let chart = anychart.column();
 
-      chart.title(chartTitle);
+      // chart.title(chartTitle);
       chart.width("99%");
       chart.maxPointWidth("10%");
       chart.minPointLength(5);
@@ -46,7 +46,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
         lineCap: "round",
         thickness: 0.5,
       });
-      series1.name("Estimated");
+      
 
       // create the second series and set the data and options
       let series2 = chart.column(mapping2);
@@ -58,7 +58,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
         lineCap: "round",
         thickness: 0.5,
       });
-      series2.name("Actual");
+      
 
       let roundBackground = chart.background();
       // set corner type
@@ -68,9 +68,13 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
 
 
       // turn on legend and tune it
-      chartData.hasOwnProperty("header")
-        ? chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0])
-        : chart.legend().enabled(false);
+      if(chartData.hasOwnProperty("header")) {
+        series1.name(chartData.header[1]);
+        series2.name(chartData.header[2]);
+        chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0])
+      } else {
+        chart.legend().enabled(false);
+      }
 
       // interactivity settings and tooltip position
       chart.interactivity().hoverMode("single");
