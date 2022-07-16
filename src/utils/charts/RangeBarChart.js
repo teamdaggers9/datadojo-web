@@ -21,9 +21,20 @@ const RangeBarChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height =
             const chart = anychart.bar()
 
             // create area series with passed data
-            const ranges_data = anychart.data.set(chartData)
-
-            const data = ranges_data.mapAs({ 'x': 'model' });
+            const modifiedData = chartData.map(d => ({
+                ...d,
+                startDate: new Date(d.low).toDateString(),
+                endDate: new Date(d.high).toDateString()
+            }))
+            const ranges_data = anychart.data.set(modifiedData)
+            
+            const data = ranges_data.mapAs({ 
+                'x': 'model', 
+                'low': 'low', 
+                "high": 'high', 
+                'startDate': 'startDate',
+                'endDate': 'endDate'
+            });
             const series = chart.rangeBar(data);
             chart.title(chartTitle);
             chart.xAxis().title(xAxisTitle);
@@ -39,14 +50,27 @@ const RangeBarChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height =
                 thickness: 0.5,
             });
             series.selected()
-            .fill("#e46858")
-            .stroke("#f9c54f")
+                .fill("#e46858")
+                .stroke("#f9c54f")
 
             chart.width("99%");
             chart.maxPointWidth("10%");
             chart.minPointLength(5);
             chart.container(containerId)
 
+            const outputDateTimeFormat = "EEE, MMM dd, yyyy";
+            const format = "MMM-DD";
+            const locale = "en-us";
+
+            anychart.format.outputLocale(locale);
+            anychart.format.outputDateTimeFormat(outputDateTimeFormat);
+
+            const dateScale = anychart.scales.dateTime();
+            chart.yScale(dateScale);
+
+            const tooltip = chart.getSeries(0).tooltip();
+            tooltip.format("Start Date: {%startDate}\nEnd Date: {%endDate}");
+            
             chart.draw(containerId)
 
 

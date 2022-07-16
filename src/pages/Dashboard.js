@@ -14,7 +14,7 @@ import {
   columnChartData,
   pieChartData,
   rangeBarChartData
-} from "../utils/charts/ChartData";
+} from "../utils/charts/chartData";
 import { getRandomValue } from "../utils/commonFunctions";
 import { usePageTitle } from "../hooks/pageTitle";
 const Dashboard = () => {
