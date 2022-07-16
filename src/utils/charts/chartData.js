@@ -1,4 +1,4 @@
-export const multiSeriesColumnChartData = {
+export const projectDurationData = {
   header: ["#", "Estimated", "Actual"],
   rows: [
     ["Project A", 6814, 3054],
@@ -8,17 +8,47 @@ export const multiSeriesColumnChartData = {
     ["Project E", 7749, 9000],
     ["Project F", 10547, 8000],
     ["Project G", 5555, 9999],
-    ["Project H", 3232, 1215],
-    ["Project I", 6814, 3054],
-    ["Project J", 7012, 5067],
-    ["Project K", 8814, 9054],
-    ["Project L", 4152, 3659],
-    ["Project M", 7749, 9000],
-    ["Project N", 10547, 8000],
-    ["Project O", 5555, 9999],
-    ["Project P", 3232, 1215],
+    ["Project H", 3232, 1215]
   ],
 };
+
+export const projectEffortData = {
+  header: ["#", "Planned", "Actual"],
+  rows: [
+    ["Project A", 6814, 3054],
+    ["Project B", 7012, 5067],
+    ["Project C", 8814, 9054],
+    ["Project D", 4152, 3659],
+    ["Project E", 7749, 9000],
+    ["Project F", 10547, 8000],
+    ["Project G", 5555, 9999],
+    ["Project H", 3232, 1215]
+  ],
+};
+
+export const estimatedCost = [
+  ["Project A", 10000],
+  ["Project B", 12000],
+  ["Project C", 13000],
+  ["Project D", 10000],
+  ["Project E", 9000],
+];
+
+export const bugsReported = [
+  ["Project A", 150],
+  ["Project B", 102],
+  ["Project C", 96],
+  ["Project D", 76],
+  ["Project E", 2],
+];
+
+export const teamStrength = [
+  ["Project A", 15],
+  ["Project B", 10],
+  ["Project C", 9],
+  ["Project D", 7],
+  ["Project E", 2],
+];
 
 export const bubbleWorldMapData = [
   {

@@ -22,6 +22,12 @@ const pages = [
     logo: require("../assets/images/icon-skillset.svg"),
     component: <SkillSet />,
   },
+  {
+    title: "Workforce",
+    url: "/workforce",
+    logo: require("../assets/images/icon-workforce.svg"),
+    component: <SkillSet />,
+  },
 ];
 
 export default pages;

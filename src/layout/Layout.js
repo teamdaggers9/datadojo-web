@@ -7,12 +7,10 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <Header />
-      <main>
-        <SideNavbar />
-        <div className="contentBody">
-          <div className="containerFull">{children}</div>
-        </div>
-      </main>
+      <SideNavbar />
+      <div className="contentBody">
+        <div className="containerFull">{children}</div>
+      </div>
       <Footer />
     </React.Fragment>
   );

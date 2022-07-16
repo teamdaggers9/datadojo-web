@@ -3,6 +3,7 @@ import Routes from "./routes";
 import { fetchCollections } from "./services/firebase";
 import Loader from './utils/components/loader';
 import './assets/css/custom.css';
+import './assets/css/grid.css';
 
 function App() {
   const [loading, setLoading] = React.useState(true);
