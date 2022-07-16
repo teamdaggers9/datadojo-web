@@ -4,6 +4,8 @@ import store from "../store/MasterStore";
 
 const projectCollection = "projects";
 const candidateCollection = "workforce";
+const skillSetCollection = "skill_master";
+const designationCollection = "designation_master";
 
 const compareFunc = (a, b) => {
   const project_a = a.project_name.toLowerCase();
@@ -54,6 +56,40 @@ const fetchCandidates = () => {
   });
 };
 
+const fetchSkillSets = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const querySnapshot = await firebase
+        .firestore()
+        .collection(skillSetCollection)
+        .get();
+      const skillSets = querySnapshot.docs.map((doc) => doc.data());
+      store.getState().setSkillSets(skillSets);
+      resolve(skillSets);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
+
+const fetchDesignations = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const querySnapshot = await firebase
+        .firestore()
+        .collection(designationCollection)
+        .get();
+      const designations = querySnapshot.docs.map((doc) => doc.data());
+      store.getState().setDesignations(designations);
+      resolve(designations);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
+
 export const createNewCollection = (collectionName, dataSet) => {
   console.log("createNewCollection");
   for (const data of Object.values(dataSet)) {
@@ -66,8 +102,10 @@ export const fetchCollections = async () => {
     try {
       const projects = await fetchProjects();
       const candidates = await fetchCandidates();
-      console.log({ projects, candidates });
-      resolve({ projects, candidates });
+      const skillSets = await fetchSkillSets();
+      const designation = await fetchDesignations();
+      console.log({ projects, candidates, skillSets, designation });
+      resolve({ projects, candidates, skillSets, designation });
     } catch (error) {
       console.log(error);
       reject(error);

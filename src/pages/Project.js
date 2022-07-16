@@ -14,10 +14,10 @@ const dropdown_list = [
     title: "Project Duration vs Revision History",
     id: 2,
   },
-  {
-    title: "Project Duration vs Stories",
-    id: 3,
-  },
+  // {
+  //   title: "Project Duration vs Stories",
+  //   id: 3,
+  // },
   {
     title: "Team Members Roles",
     id: 4,
@@ -29,10 +29,10 @@ const dropdown_list = [
 ];
 
 const Project = () => {
-  const { projects } = store((state) => state);
+  const { projects, candidates, skillSets } = store((state) => state);
 
   useEffect(() => {
-    console.log({ projects });
+    console.log({ projects, candidates });
   }, [projects]);
 
   const [selectedOption, setSelectedOption] = React.useState(
@@ -75,17 +75,51 @@ const Project = () => {
       "project_id",
       projects
     );
-    return revision_history.map((data, index) => {
-      const { start_date, end_date } = data;
-      return {
-        low: start_date,
-        high: end_date,
-        model: "Revision " + (index + 1),
-      };
-    }).reverse();
+    return revision_history
+      .map((data, index) => {
+        const { start_date, end_date } = data;
+        return {
+          low: start_date,
+          high: end_date,
+          model: "Revision " + (index + 1),
+        };
+      })
+      .reverse();
   };
 
-  const selectMap = () => {
+  const Skills = () => {
+    // export const pieChartData = [
+    //   { x: "Employee A", value: 637166 },
+    //   { x: "Employee B", value: 721630 },
+    //   { x: "Employee C", value: 148662 },
+    //   { x: "Employee D", value: 78662 },
+    //   { x: "Employee E", value: 90000 },
+    // ];
+    const assigned_members = candidates.filter((data) =>
+      data.assigned_projects.includes(selectedProject)
+    );
+    const skills = assigned_members.map((data) => data.skill_set).flat();
+    let skills_count = [];
+    for (const { skill_id } of skills) {
+      const existing_skill = skills_count.find(
+        (data) => data.skill_id === skill_id
+      );
+      if (existing_skill) {
+        existing_skill.count += 1;
+      } else {
+        skills_count = [...skills_count, { skill_id, count: 1 }];
+      }
+    }
+    return skills_count.map((data) => {
+      const { skill_id, count } = data;
+      const { skill_name } = skillSets.find(
+        (data) => data.skill_id === skill_id
+      );
+      return { x: skill_name, value: count };
+    });
+  };
+
+  const Chart = () => {
     const title = getSelectedOption(
       "title",
       selectedOption,
@@ -116,11 +150,11 @@ const Project = () => {
         />
       );
     }
-    if (selectedOption === 4) {
+    if (selectedOption === 5) {
       return (
         <PieChart
           chartTitle={title}
-          chartData={TotalEffort()}
+          chartData={Skills()}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
           cId={getRandomValue("number", 3)}
@@ -172,7 +206,7 @@ const Project = () => {
                 />
               </div>
             </div>
-            <div className="card-body">{selectMap()}</div>
+            <div className="card-body">{Chart()}</div>
           </div>
         </div>
       </div>
