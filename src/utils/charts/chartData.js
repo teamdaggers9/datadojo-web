@@ -125,11 +125,17 @@ export const dotmapData = [
 
 export const spiderWebData = {
   rows: [
-    ['HTML', 1],
+    ['HTML', 0],
     ['CSS', 2],
-    ['JavaScript', 3],
+    ['JavaScript', 4],
     ['React', 2],
-    ['Shell', 4]
+    ['Shell', 4],
+    ['.NET', 2],
+    ['GCP Cloud Functions', 4],
+    ['TypeScript', 2],
+    ['Angular', 4],
+    ['PHP', 2],
+    ['Selenium', 4]
   ]
 };
 

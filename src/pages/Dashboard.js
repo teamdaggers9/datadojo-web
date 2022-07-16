@@ -1,6 +1,7 @@
 import React from "react";
 import ProjectGraph from "../components/ProjectsGraph";
 import ProjectData from "../components/ProjectData";
+import WorkforceDist from "../components/WorkforceDist";
 
 const Dashboard = () => {
   return (
@@ -18,9 +19,14 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-lg-12 col-xl-12">
-          <div className="card">
+        <div class="col-lg-6 col-xl-6">
+          <div class="card">
             <ProjectGraph />
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-6">
+          <div class="card">
+            <WorkforceDist />
           </div>
         </div>
       </div>
