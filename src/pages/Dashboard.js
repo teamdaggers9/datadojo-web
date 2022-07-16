@@ -1,20 +1,31 @@
 import React from "react";
-import { usePageTitle } from "../hooks/pageTitle";
 import Layout from "../layout/Layout";
-import ProjectGraph from './DashboardComponents/ProjectsGraph';
+import ProjectGraph from "../components/ProjectsGraph";
+import ProjectData from "../components/ProjectData";
+
 const Dashboard = () => {
-  usePageTitle("Dashboard");
   return (
-    <Layout>
-      <div class="row">
-        <ProjectGraph/>
-        <div class="col-lg-6 col-xl-6">
-          <div class="card">
-            <div class="card-body">zxczx</div>
+    <React.Fragment>
+      <div className="row">
+        <div className="col-lg-12 col-xl-12">
+          <div className="card">
+            <div className="card-header">
+              <h4 className="card-title">Projects Data</h4>
+            </div>
+            <div className="card-body">
+              <ProjectData />
+            </div>
           </div>
         </div>
       </div>
-    </Layout>
+      <div className="row">
+        <div class="col-lg-6 col-xl-6">
+          <div class="card">
+            <ProjectGraph />
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -20,3 +20,11 @@ export const getRandomValue = (type, length = 20) => {
       return;
   }
 };
+
+export const formatThousandSeparator = (amount) => {
+  if (amount) {
+    return new Intl.NumberFormat("en-US").format(amount);
+  } else {
+    return amount;
+  }
+};

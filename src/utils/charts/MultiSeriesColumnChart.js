@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle, cId }) => {
+const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle, cId, height }) => {
   const { anychart, isAnychartReady } = useAnychart();
 
   useEffect(() => {
@@ -111,7 +111,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
     <div
       id={`container${cId}`}
       className="chartContainer"
-      style={{ height: "400px" }}
+      style={{ height }}
     />
   );
 };

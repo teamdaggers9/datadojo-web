@@ -3,7 +3,7 @@ import { useAnychart } from '../../hooks/useAnyChart'
 
 const containerId = 'colChart'
 
-const ColumnChart = ({ chartData, chartTitle, xTitle, yTitle, height }) => {
+const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) => {
     const { anychart, isAnychartReady } = useAnychart();
 
     useEffect(() => {
@@ -19,14 +19,24 @@ const ColumnChart = ({ chartData, chartTitle, xTitle, yTitle, height }) => {
 
             const chart = anychart.column()
 
-            var series = chart.column(chartData)
-
+            const series = chart.column(chartData)
+            series.fill({ keys: ["#f9c54f", "#e46858"], angle: 90, opacity: 1 });
+            series.stroke({
+                keys: ["#f9c54f", "#e46858"],
+                angle: 90,
+                lineJoin: "round",
+                lineCap: "round",
+                thickness: 0.5,
+            });
+            series.name("Actual Data");
             chart.title(chartTitle);
 
             // set the titles of the axes
-            chart.xAxis().title(xTitle);
-            chart.yAxis().title(yTitle);
-
+            chart.xAxis().title(xAxisTitle);
+            chart.yAxis().title(yAxisTitle);
+            chart.width("99%");
+            chart.maxPointWidth("10%");
+            chart.minPointLength(5);
             chart.container(containerId)
 
             chart.draw(containerId)

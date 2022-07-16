@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const DotMap = ({ chartTitle, chartData, cId }) => {
+const DotMap = ({ chartTitle, chartData, cId, height }) => {
   const { anychart, isAnychartReady } = useAnychart();
 
   useEffect(() => {
