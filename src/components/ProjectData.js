@@ -7,10 +7,6 @@ const ProjectData = () => {
   const { projects } = store((state) => state);
   const { hourly_rate } = config;
 
-  useEffect(() => {
-    console.log({ projects });
-  }, [projects]);
-
   const dataSet = projects.map((data) => {
     const { development_activity, scrum_activity, planned_effort, debug_time } =
       data;

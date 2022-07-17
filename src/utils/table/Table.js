@@ -10,64 +10,69 @@ const Table = ({ dataSet }) => {
       order_id: 1,
     },
     {
-      Header: "Estimated Completion Date",
-      accessor: "estimated_duration",
+      Header: "Project Start Date",
+      accessor: "start_date",
       order_id: 2,
     },
     {
-      Header: "Actual Completion Date",
-      accessor: "actual_duration",
+      Header: "Estimated Completion Date",
+      accessor: "estimated_completion_date",
       order_id: 3,
+    },
+    {
+      Header: "Actual Completion Date",
+      accessor: "actual_completion_date",
+      order_id: 4,
     },
     {
       Header: "Status",
       accessor: "status",
-      order_id: 4,
+      order_id: 5,
     },
     {
       Header: "Estimated Cost",
       accessor: "planned_cost",
-      order_id: 5,
+      order_id: 6,
     },
     {
-      Header: "Actual Cost",
+      Header: "Cost To Date",
       accessor: "actual_cost",
-      order_id: 6,
+      order_id: 7,
     },
     {
       Header: "Team Strength",
       accessor: "team_strength",
-      order_id: 7,
+      order_id: 8,
     },
     {
       Header: "Planned Effort (in hours)",
       accessor: "planned_effort",
-      order_id: 8,
+      order_id: 9,
     },
     {
       Header: "Actual Effort (in hours)",
       accessor: "actual_effort",
-      order_id: 9,
+      order_id: 10,
     },
     {
-      Header: "Scrum Activity",
+      Header: "Scrum Activity (in hours)",
       accessor: "scrum_activity",
-      order_id: 10,
+      order_id: 11,
     },
     {
       Header: "Development Time (in hours)",
       accessor: "development_activity",
-      order_id: 11,
+      order_id: 12,
     },
     {
       Header: "Debug Time (in hours)",
       accessor: "debug_time",
-      order_id: 12,
+      order_id: 13,
     },
     {
       Header: "Bug Count",
       accessor: "bugs_reported",
-      order_id: 13,
+      order_id: 14,
     },
   ];
 
@@ -117,10 +122,10 @@ const Table = ({ dataSet }) => {
   };
 
   const setStatusClassName = (status) => {
-    if (status === "completed") {
+    if (status === "Completed") {
       return "circle success";
     }
-    if (status === "maintenance") {
+    if (status === "Maintenance") {
       return "circle maintenance";
     }
     return "circle warning";
@@ -144,20 +149,24 @@ const Table = ({ dataSet }) => {
           {dataSet.map((data, index) => {
             return (
               <tr key={index}>
-                {columns.sort(compareFunc).map(({ accessor }, index) => {
+                {columns.sort(compareFunc).map(({ accessor }, _index) => {
                   if (
-                    accessor === "estimated_duration" ||
-                    accessor === "actual_duration"
+                    accessor === "estimated_completion_date" ||
+                    accessor === "actual_completion_date" ||
+                    accessor === "start_date" 
                   ) {
+                    if (data["status"] === "Ongoing" && accessor === "actual_completion_date") {
+                      return <td key={_index}> NA </td>
+                    }
                     return (
-                      <td key={index}>
+                      <td key={_index}>
                         {moment(data[accessor]).format("ll")}
                       </td>
                     );
                   }
                   if (accessor === "project_name") {
                     return (
-                      <td key={index} className={setClassName(accessor)}>
+                      <td key={_index} className={setClassName(accessor)}>
                         <div className="projectImage">
                           <img
                             src="https://aspaceforphotography.com/wp-content/uploads/2017/11/f2637562392edd24809a100a0211e6f8-symbols-design-logo-icon-design.jpg"
@@ -170,7 +179,7 @@ const Table = ({ dataSet }) => {
                   }
                   if (accessor === "status") {
                     return (
-                      <td key={index}>
+                      <td key={_index}>
                         <div className="statusWrap">
                           <i className={setStatusClassName(data[accessor])}></i>{" "}
                           {data[accessor]}
@@ -180,7 +189,7 @@ const Table = ({ dataSet }) => {
                   }
                   if (accessor === "planned_cost" || accessor === "actual_cost") {
                     return (
-                      <td key={index} className="txtRight">
+                      <td key={_index} className="txtRight">
                         ${formatThousandSeparator(data[accessor])}
                       </td>
                     );
@@ -195,12 +204,12 @@ const Table = ({ dataSet }) => {
                     accessor === "bugs_reported"
                   ) {
                     return (
-                      <td key={index} className="txtRight">
+                      <td key={_index} className="txtRight">
                         {data[accessor]}
                       </td>
                     );
                   }
-                  return <td key={index}>{data[accessor]}</td>;
+                  return <td key={_index}>{data[accessor]}</td>;
                 })}
               </tr>
             );

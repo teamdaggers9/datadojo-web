@@ -8,7 +8,7 @@ const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) 
 
     useEffect(() => {
         isAnychartReady && anychart && renderChart();
-    }, [isAnychartReady, anychart, chartData, chartTitle, height]);
+    }, [isAnychartReady, anychart, chartData, xAxisTitle, yAxisTitle, chartTitle, height]);
 
     function renderChart() {
 
@@ -28,8 +28,11 @@ const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) 
                 lineCap: "round",
                 thickness: 0.5,
             });
-            series.name("Actual Data");
             chart.title(chartTitle);
+
+            // set tooltip text template
+            var tooltip = chart.getSeries(0).tooltip();
+            tooltip.format(yAxisTitle+": {%value}");
 
             // set the titles of the axes
             chart.xAxis().title(xAxisTitle);

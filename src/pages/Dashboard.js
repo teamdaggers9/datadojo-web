@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "../layout/Layout";
 import ProjectGraph from "../components/ProjectsGraph";
 import ProjectData from "../components/ProjectData";
+import WorkforceDist from "../components/WorkforceDist";
 
 const Dashboard = () => {
   return (
@@ -19,9 +19,14 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row">
-        <div class="col-lg-6 col-xl-6">
-          <div class="card">
+        <div className="col-lg-6 col-xl-6">
+          <div className="card">
             <ProjectGraph />
+          </div>
+        </div>
+        <div className="col-lg-6 col-xl-6">
+          <div className="card">
+            <WorkforceDist />
           </div>
         </div>
       </div>
