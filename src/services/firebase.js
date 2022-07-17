@@ -56,16 +56,17 @@ const fetchCandidates = () => {
   });
 };
 
-const fetchSkillSets = () => {
+const fetchSkillSet = () => {
   return new Promise(async (resolve, reject) => {
     try {
       const querySnapshot = await firebase
         .firestore()
         .collection(skillSetCollection)
         .get();
-      const skillSets = querySnapshot.docs.map((doc) => doc.data());
-      store.getState().setSkillSets(skillSets);
-      resolve(skillSets);
+      const skillSet = querySnapshot.docs.map((doc) => doc.data());
+      console.log(skillSet);
+      store.getState().setSkillSet(skillSet);
+      resolve(skillSet);
     } catch (error) {
       console.log(error);
       reject(error);
@@ -102,10 +103,10 @@ export const fetchCollections = async () => {
     try {
       const projects = await fetchProjects();
       const candidates = await fetchCandidates();
-      const skillSets = await fetchSkillSets();
-      const designation = await fetchDesignations();
-      console.log({ projects, candidates, skillSets, designation });
-      resolve({ projects, candidates, skillSets, designation });
+      const skillSet = await fetchSkillSet();
+      const designations = await fetchDesignations();
+
+      resolve({ projects, candidates, skillSet, designations });
     } catch (error) {
       console.log(error);
       reject(error);

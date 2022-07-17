@@ -1,7 +1,11 @@
-import Dashboard from "../pages/Dashboard";
-import Project from "../pages/Project";
-import SkillSet from "../pages/SkillSet";
 import React from "react";
+
+import { 
+  Dashboard,
+  Project,
+  SkillSet,
+  Workforce
+} from "../pages";
 
 const pages = [
   {
@@ -26,7 +30,7 @@ const pages = [
     title: "Workforce",
     url: "/workforce",
     logo: require("../assets/images/icon-workforce.svg"),
-    component: <SkillSet />,
+    component: <Workforce />,
   },
 ];
 
