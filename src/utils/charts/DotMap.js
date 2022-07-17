@@ -18,10 +18,11 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
       map.geoData("anychart.maps.world").padding(0);
 
       // Sets Chart Title
+      chartTitle !== '' && 
       map
         .title()
         .enabled(true)
-        .text("Organisation Workforce Distribution")
+        .text(chartTitle)
         .padding([0, 0, 20, 0]);
 
       // creates Dataset from Sample data
