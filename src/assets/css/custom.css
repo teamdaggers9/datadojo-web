@@ -852,6 +852,7 @@ select {
 .dropdown button{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .dropdown button span {
   text-overflow: ellipsis;
@@ -1045,4 +1046,94 @@ select {
 }
 .checkSwitch span.right{
   margin-left: 10px;
+}
+.compareVs{
+  position: fixed;
+  top: calc(50% + 127px);
+  left: calc(50% + 80px);
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: var(--dd-color-2);
+  color: var(--dd-color-4);
+  text-align: center;
+  line-height: 60px;
+  border-radius: 30px;
+  z-index: 1;
+  font-size: 1.5rem;
+  box-shadow: 0 0 10px 0 #e46858; 
+}
+.projectInnerWrap .card-header{
+  position: sticky;
+  top: 96px;
+  z-index: 2;
+  background: #fff;
+  border-radius: 1.25rem 1.25rem 0 0;
+}
+.__react_component_tooltip{
+  background: var(--dd-color-1) !important;
+}
+.__react_component_tooltip.place-top::after{
+  border-top-color: var(--dd-color-1) !important;
+}
+.hDevider{
+  margin: 10px 0;
+  height: 10px;
+  background: var(--dd-color-5);
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+/* Modal */
+.customModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.customModal.show {
+  visibility: visible;
+  opacity: 1;
+}
+.modalContainer {
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  transition: all .4s ease-in-out;
+}
+.modalHeader{
+  padding: 20px 20px 0px 20px;
+}
+.modalBody{
+  padding: 20px;
+}
+.modalContainer h4 {
+  margin-bottom: 0;
+  padding-right: 20px;
+}
+.modalContainer .close {
+  position: absolute;
+  top: 6px;
+  right: 13px;
+  transition: all 200ms;
+  font-size: 1.75rem;
+  text-decoration: none;
+  line-height: 1;
+}
+
+@media screen and (max-width: 767px){
+  .modalContainer{
+    max-width: 90%;
+  }
 }
