@@ -1243,3 +1243,47 @@ select {
     max-width: 90%;
   }
 }
+
+.form-container input[type="checkbox"]{
+  display:none;
+}
+
+.checkbox-container{
+  margin-bottom: 16px;
+}
+.form-container .checkbox{
+  display:inline-block;
+  position:relative;
+  padding-left:30px;
+  line-height: normal;
+  cursor: pointer;
+  color: var(--dd-color-1);
+}
+
+.form-container .checkbox:before{
+  z-index:15;
+  content: '';
+  position:absolute;
+  left:0;
+  top: -1px;
+  transition:all 0.3s ease;
+  cursor:pointer;
+  width:20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--dd-color-1);
+  height:20px;
+}
+.form-container input[type="checkbox"]:checked + label{
+  color:var(--dd-color-1);
+}
+
+.form-container input[type="checkbox"]:checked +  label:before{
+  border-color: transparent;
+  border-left-color: var(--dd-success);
+  border-bottom-color: var(--dd-success);
+  transform:rotate(-50deg);
+  width:18px;
+  height:10px;
+  top: 0px;
+}
