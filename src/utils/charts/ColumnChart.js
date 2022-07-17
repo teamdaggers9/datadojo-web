@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useAnychart } from '../../hooks/useAnyChart'
 
-const containerId = 'colChart'
 
-const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height }) => {
+
+const ColumnChart = ({ chartData, chartTitle, xAxisTitle, yAxisTitle, height, cId }) => {
     const { anychart, isAnychartReady } = useAnychart();
-
+    const containerId = 'colChart'+ cId;
     useEffect(() => {
         isAnychartReady && anychart && renderChart();
-    }, [isAnychartReady, anychart, chartData, xAxisTitle, yAxisTitle, chartTitle, height]);
+    }, [isAnychartReady, anychart, chartData]);
 
     function renderChart() {
 

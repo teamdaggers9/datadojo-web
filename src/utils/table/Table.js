@@ -169,9 +169,9 @@ const Table = ({ dataSet }) => {
                       <td key={_index} className={setClassName(accessor)}>
                         <div className="projectImage">
                           <img
-                            src="https://aspaceforphotography.com/wp-content/uploads/2017/11/f2637562392edd24809a100a0211e6f8-symbols-design-logo-icon-design.jpg"
-                            width="40px"
-                          />
+                            src={require("../../assets/images/dummy-project-icon.png")}
+                            width="18px"
+                          />{" "}
                           {data[accessor]}
                         </div>
                       </td>
