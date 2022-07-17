@@ -1,9 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { PieChart, RangeBarChart } from "../utils/charts";
 import { getRandomValue } from "../utils/commonFunctions";
-import store from "../store/MasterStore";
 import DropDown from "../utils/components/DropDown";
-import { pieChartData, rangeBarChartData } from "../utils/charts/chartData";
 
 const Project = ({
   projects,
@@ -22,12 +20,9 @@ const Project = ({
   );
 
   const Chart = (selectedOption) => {
-    const title = renderAllCharts ? getSelectedOption(
-      "title",
-      selectedOption,
-      "id",
-      dropdown_list
-    ) : "";
+    const title = renderAllCharts
+      ? getSelectedOption("title", selectedOption, "id", dropdown_list)
+      : "";
     if (selectedOption === 1) {
       return (
         <PieChart
