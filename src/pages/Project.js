@@ -4,6 +4,7 @@ import { getRandomValue } from "../utils/commonFunctions";
 import store from "../store/MasterStore";
 import DropDown from "../utils/components/DropDown";
 import { pieChartData, rangeBarChartData } from "../utils/charts/chartData";
+import ProjectComponent from "../components/Project";
 
 const dropdown_list = [
   {
@@ -29,11 +30,9 @@ const dropdown_list = [
 ];
 
 const Project = () => {
-  const { projects, candidates, skillSets } = store((state) => state);
-
-  useEffect(() => {
-    console.log({ projects, candidates });
-  }, [projects]);
+  const { projects, candidates, skillSets, designations } = store(
+    (state) => state
+  );
 
   const [selectedOption, setSelectedOption] = React.useState(
     dropdown_list[0].id
@@ -58,7 +57,7 @@ const Project = () => {
     return _selected_option[field_name];
   };
 
-  const TotalEffort = () => {
+  const TotalEffort = (selectedProject) => {
     const { development_activity, scrum_activity, debug_time } =
       getSelectedOption(null, selectedProject, "project_id", projects);
     return [
@@ -68,7 +67,7 @@ const Project = () => {
     ];
   };
 
-  const RevisionHistory = () => {
+  const RevisionHistory = (selectedProject) => {
     const revision_history = getSelectedOption(
       "revision history",
       selectedProject,
@@ -87,14 +86,42 @@ const Project = () => {
       .reverse();
   };
 
-  const Skills = () => {
-    // export const pieChartData = [
-    //   { x: "Employee A", value: 637166 },
-    //   { x: "Employee B", value: 721630 },
-    //   { x: "Employee C", value: 148662 },
-    //   { x: "Employee D", value: 78662 },
-    //   { x: "Employee E", value: 90000 },
-    // ];
+  const Designations = (selectedProject) => {
+    const assigned_members = candidates.filter((data) =>
+      data.assigned_projects.includes(selectedProject)
+    );
+    const _designations = assigned_members.map((data) => {
+      const { designation_id } = data;
+      return {
+        designation_id,
+        count: 1,
+      };
+    });
+    let designations_count = [];
+    for (const { designation_id } of _designations) {
+      const existing_skill = designations_count.find(
+        (data) => data.designation_id === designation_id
+      );
+      if (existing_skill) {
+        existing_skill.count += 1;
+      } else {
+        designations_count = [
+          ...designations_count,
+          { designation_id, count: 1 },
+        ];
+      }
+    }
+    return designations_count.map((data) => {
+      const { designation_id, count } = data;
+      const { designation_name } = designations.find(
+        (data) => data.designation_id === designation_id
+      );
+      console.log({ designation_name, count, designation_id });
+      return { x: designation_name, value: count };
+    });
+  };
+
+  const Skills = (selectedProject) => {
     const assigned_members = candidates.filter((data) =>
       data.assigned_projects.includes(selectedProject)
     );
@@ -119,95 +146,71 @@ const Project = () => {
     });
   };
 
-  const Chart = () => {
-    const title = getSelectedOption(
-      "title",
-      selectedOption,
-      "id",
-      dropdown_list
-    );
-    if (selectedOption === 1) {
-      return (
-        <PieChart
-          chartTitle={''}
-          chartData={TotalEffort()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-    if (selectedOption === 2) {
-      return (
-        <RangeBarChart
-          chartTitle={''}
-          chartData={RevisionHistory()}
-          xAxisTitle={""}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-    if (selectedOption === 5) {
-      return (
-        <PieChart
-          chartTitle={''}
-          chartData={Skills()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-  };
-
   return (
     <React.Fragment>
       <div className="row">
+        <div className="col-lg-12 col-xl-12 txtRight">
+          <span>switch</span>
+          <hr/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-12 col-xl-12 txtRight">
+          <DropDown
+            dropdown_list={projects}
+            selected_field_name="project_name"
+            unique_field_name="project_id"
+            onChange={(selected_option) => setSelectedProject(selected_option)}
+            selected_option={selectedProject}
+          />
+        </div>
+      </div>
+      <div className="row">
         <div className="col-lg-12 col-xl-12">
-          <div className="card">
-            <div className="card-header">
-              <h4 className="card-title">
-                {getSelectedOption(
-                  "project_name",
-                  selectedProject,
-                  "project_id",
-                  projects
-                )}{" "}
-                {/* |{" "} */}
+          <div className="">
+            <div className="">
+              <h4 className="">
                 {/* {getSelectedOption(
-                  "title",
-                  selectedOption,
-                  "id",
-                  dropdown_list
-                )} */}
+                "project_name",
+                selectedProject,
+                "project_id",
+                projects
+              )} */}
               </h4>
-              <div className="card-header-right">
-                
-                <DropDown
-                  dropdown_list={projects}
-                  selected_field_name="project_name"
-                  unique_field_name="project_id"
-                  onChange={(selected_option) =>
-                    setSelectedProject(selected_option)
-                  }
-                  selected_option={selectedProject}
-                />
-                <DropDown
-                  dropdown_list={dropdown_list}
-                  selected_field_name="title"
-                  unique_field_name="id"
-                  onChange={(selected_option) =>
-                    setSelectedOption(selected_option)
-                  }
-                  selected_option={selectedOption}
-                />
+              <div className="card-header-right"></div>
+            </div>
+            <div className="">
+              <div className="row">
+                <div className="col-lg-6 col-xl-6">
+                  <ProjectComponent
+                    projects={projects}
+                    candidates={candidates}
+                    skillSets={skillSets}
+                    designations={designations}
+                    dropdown_list={dropdown_list}
+                    getSelectedOption={getSelectedOption}
+                    TotalEffort={TotalEffort}
+                    RevisionHistory={RevisionHistory}
+                    Designations={Designations}
+                    Skills={Skills}
+                  />
+                </div>
+                <div className="col-lg-6 col-xl-6">
+                  <ProjectComponent
+                    projects={projects}
+                    candidates={candidates}
+                    skillSets={skillSets}
+                    designations={designations}
+                    dropdown_list={dropdown_list}
+                    getSelectedOption={getSelectedOption}
+                    TotalEffort={TotalEffort}
+                    RevisionHistory={RevisionHistory}
+                    Designations={Designations}
+                    Skills={Skills}
+                  />
+                </div>
               </div>
             </div>
-            <div className="card-body">{Chart()}</div>
           </div>
         </div>
       </div>

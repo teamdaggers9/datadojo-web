@@ -161,15 +161,26 @@ const ProjectGraph = () => {
 
   return (
     <React.Fragment>
-      <div className="card">
-        <div className="card-header">
-          <h4 className="card-title">
+      <div className="card-header">
+        <h4 className="card-title">
+          {
+            AppSetting.projectGraphOptions.find(
+              (each) => each.value === currentOption
+            ).label
+          }
+        </h4>
+        <div className="dropdown dropdownRight">
+          <button
+            type="button"
+            className="btnPrimary"
+            onClick={() => setIsVisible((prev) => !prev)}
+          >
             {
               AppSetting.projectGraphOptions.find(
                 (each) => each.value === currentOption
               ).label
             }
-          </h4>
+          </button>
           <div className="dropdown">
             <button
               type="button"
@@ -203,8 +214,8 @@ const ProjectGraph = () => {
             </div>
           </div>
         </div>
-        <div className="card-body">{selectMap(currentOption)}</div>
       </div>
+      <div className="card-body">{selectMap(currentOption)}</div>
     </React.Fragment>
   );
 };

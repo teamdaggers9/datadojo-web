@@ -19,13 +19,13 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="row">
-        <div class="col-lg-6 col-xl-6">
-          <div class="card">
+        <div className="col-lg-6 col-xl-6">
+          <div className="card">
             <ProjectGraph />
           </div>
         </div>
-        <div class="col-lg-6 col-xl-6">
-          <div class="card">
+        <div className="col-lg-6 col-xl-6">
+          <div className="card">
             <WorkforceDist />
           </div>
         </div>

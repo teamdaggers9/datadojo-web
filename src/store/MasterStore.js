@@ -4,12 +4,12 @@ import { devtools } from "zustand/middleware";
 const userStore = (set) => ({
   projects: [],
   candidates: [],
-  skillSets: [],
+  skillSet: [],
   designations: [],
   setProjects: (projects) => set(() => ({ projects })),
   setCandidates: (candidates) => set(() => ({ candidates })),
-  setSkillSets: (skillSets) => set(() => ({ skillSets })),
-  setDesignations: (designations) => set(() => ({ designations })),
+  setSkillSet: (skillSet) => set(() => ({ skillSet })),
+  setDesignations: (designations) => set(() => ({ designations }))
 });
 
 export default create(devtools(userStore));
