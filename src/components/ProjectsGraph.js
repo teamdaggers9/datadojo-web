@@ -161,48 +161,46 @@ const ProjectGraph = () => {
 
   return (
     <React.Fragment>
-      <div className="card">
-        <div className="card-header">
-          <h4 className="card-title">
+      <div className="card-header">
+        <h4 className="card-title">
+          {
+            AppSetting.projectGraphOptions.find(
+              (each) => each.value === currentOption
+            ).label
+          }
+        </h4>
+        <div className="dropdown dropdownRight">
+          <button
+            type="button"
+            className="btnPrimary"
+            onClick={() => setIsVisible((prev) => !prev)}
+          >
             {
               AppSetting.projectGraphOptions.find(
                 (each) => each.value === currentOption
               ).label
-            }
-          </h4>
-          <div className="dropdown dropdownRight">
-            <button
-              type="button"
-              className="btnPrimary"
-              onClick={() => setIsVisible((prev) => !prev)}
-            >
-              {
-                AppSetting.projectGraphOptions.find(
-                  (each) => each.value === currentOption
-                ).label
-              }{" "}
-              <i className="downArrow"></i>
-            </button>
-            <div className={`dropdownMenu ${isVisible ? "show" : ""}`}>
-              {AppSetting.projectGraphOptions.map((eachOption, index) => (
-                <a
-                  className={`dropdownItem`}
-                  href="#"
-                  id={eachOption.value}
-                  onClick={() => {
-                    setCurrentOption(eachOption.value);
-                    setIsVisible(false);
-                  }}
-                  key={index}
-                >
-                  {eachOption.label}
-                </a>
-              ))}
-            </div>
+            }{" "}
+            <i className="downArrow"></i>
+          </button>
+          <div className={`dropdownMenu ${isVisible ? "show" : ""}`}>
+            {AppSetting.projectGraphOptions.map((eachOption, index) => (
+              <a
+                className={`dropdownItem`}
+                href="#"
+                id={eachOption.value}
+                onClick={() => {
+                  setCurrentOption(eachOption.value);
+                  setIsVisible(false);
+                }}
+                key={index}
+              >
+                {eachOption.label}
+              </a>
+            ))}
           </div>
         </div>
-        <div className="card-body">{selectMap(currentOption)}</div>
       </div>
+      <div className="card-body">{selectMap(currentOption)}</div>
     </React.Fragment>
   );
 };
