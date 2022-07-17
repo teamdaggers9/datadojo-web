@@ -21,7 +21,7 @@ const WorkforceDist = () => {
     };
   });
   return (
-    <div class="card-body">
+    <div className="card-body">
       <DotMap
         chartTitle={"Workforce Distribution"}
         chartData={dotmapData}

@@ -29,7 +29,9 @@ const dropdown_list = [
 ];
 
 const Project = () => {
-  const { projects, candidates, skillSets } = store((state) => state);
+  const { projects, candidates, skillSets, designations } = store(
+    (state) => state
+  );
 
   useEffect(() => {
     console.log({ projects, candidates });
@@ -87,14 +89,42 @@ const Project = () => {
       .reverse();
   };
 
+  const Designations = () => {
+    const assigned_members = candidates.filter((data) =>
+      data.assigned_projects.includes(selectedProject)
+    );
+    const _designations = assigned_members.map((data) => {
+      const { designation_id } = data;
+      return {
+        designation_id,
+        count: 1,
+      };
+    });
+    let designations_count = [];
+    for (const { designation_id } of _designations) {
+      const existing_skill = designations_count.find(
+        (data) => data.designation_id === designation_id
+      );
+      if (existing_skill) {
+        existing_skill.count += 1;
+      } else {
+        designations_count = [
+          ...designations_count,
+          { designation_id, count: 1 },
+        ];
+      }
+    }
+    return designations_count.map((data) => {
+      const { designation_id, count } = data;
+      const { designation_name } = designations.find(
+        (data) => data.designation_id === designation_id
+      );
+      console.log({ designation_name, count, designation_id });
+      return { x: designation_name, value: count };
+    });
+  };
+
   const Skills = () => {
-    // export const pieChartData = [
-    //   { x: "Employee A", value: 637166 },
-    //   { x: "Employee B", value: 721630 },
-    //   { x: "Employee C", value: 148662 },
-    //   { x: "Employee D", value: 78662 },
-    //   { x: "Employee E", value: 90000 },
-    // ];
     const assigned_members = candidates.filter((data) =>
       data.assigned_projects.includes(selectedProject)
     );
@@ -143,6 +173,18 @@ const Project = () => {
         <RangeBarChart
           chartTitle={title}
           chartData={RevisionHistory()}
+          xAxisTitle={"Project"}
+          yAxisTitle={"Days"}
+          cId={getRandomValue("number", 3)}
+          height="400px"
+        />
+      );
+    }
+    if (selectedOption === 4) {
+      return (
+        <PieChart
+          chartTitle={title}
+          chartData={Designations()}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
           cId={getRandomValue("number", 3)}

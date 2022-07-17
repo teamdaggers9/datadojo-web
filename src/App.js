@@ -14,7 +14,6 @@ function App() {
   };
 
   useEffect(() => {
-    console.log('userEffect');
     console.log({ dataSet: MOCK_DATA.default });
     // createNewCollection('projects', MOCK_DATA.default);
     fetchMasterData();
