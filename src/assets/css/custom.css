@@ -1219,19 +1219,21 @@ select {
   transition: all .4s ease-in-out;
 }
 .modalHeader{
-  padding: 20px 20px 0px 20px;
+  padding: 20px 40px 15px 20px;
+  border-radius: 10px 10px 0 0;
+  background: var(--dd-color-0);
+}
+.modalHeader h2{
+  margin-bottom: 0;
+  font-size: 1.5rem;
 }
 .modalBody{
   padding: 20px;
 }
-.modalContainer h4 {
-  margin-bottom: 0;
-  padding-right: 20px;
-}
 .modalContainer .close {
   position: absolute;
-  top: 6px;
-  right: 13px;
+  top: 20px;
+  right: 20px;
   transition: all 200ms;
   font-size: 1.75rem;
   text-decoration: none;
@@ -1261,7 +1263,7 @@ select {
 }
 
 .form-container .checkbox:before{
-  z-index:15;
+  z-index:1;
   content: '';
   position:absolute;
   left:0;
