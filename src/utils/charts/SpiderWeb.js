@@ -62,7 +62,7 @@ const SpiderWeb = ({ chartTitle, chartData, cId }) => {
     <div
       id={`container${cId}`}
       className="chartContainer"
-      style={{ height: "400px", width: "30%" }}
+      style={{ height: "400px" }}
     />
   );
 };

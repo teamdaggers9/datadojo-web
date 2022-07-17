@@ -1,12 +1,6 @@
 import React from "react";
 
-import { 
-  Dashboard,
-  Project,
-  SkillSet,
-  Workforce,
-  About
-} from "../pages";
+import { Dashboard, Project, SkillSet, Workforce, About } from "../pages";
 
 const pages = [
   {

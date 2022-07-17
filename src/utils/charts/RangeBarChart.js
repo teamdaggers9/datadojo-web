@@ -66,7 +66,7 @@ const RangeBarChart = ({
       yTitle.fontColor("#2A2550");
       
       // set the selection color
-      series.fill({ keys: ["#f9c54f", "#e46858"], angle: 90, opacity: 1 });
+      series.fill({ keys: ["#f9c54f", "#e46858"], angle: 180, opacity: 1 });
       series.stroke({
         keys: ["#f9c54f", "#e46858"],
         angle: 90,
