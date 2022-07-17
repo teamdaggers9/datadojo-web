@@ -80,6 +80,7 @@ td {
   --dd-error: #e74c3c;
   --dd-success: #4caf50;
   --dd-warning: #ffa755;
+  --dd-maintenance: #236194;  
   --dd-shadow-1: 0px 0px 20px rgba(0, 0, 0, 0.1);
   --dd-radius-1: 1rem;
   --dd-radius-2: .5rem;
@@ -730,11 +731,11 @@ select {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: var(--dd-color-5);
+  background-color: var(--dd-color-0);
 }
 
 .table-hover tbody tr:hover {
-  background-color: var(--dd-color-5);
+  background-color: var(--dd-color-0);
 }
 
 .dataTbl thead th:first-child {
@@ -805,6 +806,10 @@ select {
 
 .warning {
   background: var(--dd-warning);
+}
+
+.maintenance{
+  background: var(--dd-maintenance);
 }
 
 .tag {

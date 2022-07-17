@@ -38,7 +38,7 @@ const DropDown = ({
         onClick={() => setShowDropDownList((prev)=>!prev)}
         data-tip={getTitle()}
       >
-        {getTitle().slice(0,15)+'...'} <i className="downArrow"></i>
+        {getTitle().slice(0,15)+'...'} <i className="downArrowDark"></i>
       </button>
       <div className={showDropDownList ? "dropdownMenu dropdownRight show" : "dropdownMenu dropdownRight"}>
         <div className="dropdownInnerWrap">
