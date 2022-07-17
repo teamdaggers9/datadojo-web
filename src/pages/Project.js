@@ -156,85 +156,89 @@ const Project = () => {
 
   return (
     <React.Fragment>
-      
       <div className="row">
         <div className="col-lg-12 col-xl-12 txtRight">
-
           <div className="flexSpaceCenterBetween">
             <span></span>
             <div className="checkSwitch">
               <span className="left">OFF</span>
-              <input type="checkbox" id="switch" />
-              <label for="switch"><span>Toggle</span></label>
+              <input
+                type="checkbox"
+                id="switch"
+                defaultChecked={showProjectComparison}
+                onChange={() => setShowProjectComparison((prev) => !prev)}
+              />
+              <label for="switch">
+                <span>Toggle</span>
+              </label>
               <span className="right">ON</span>
             </div>
-            
           </div>
         </div>
       </div>
       <div className="projectInnerWrap">
-      {showProjectComparison ? (
-        <React.Fragment>
-          <ProjectComparison
-            projects={projects}
-            candidates={candidates}
-            skillSets={skillSet}
-            designations={designations}
-            dropdown_list={dropdown_list}
-            getSelectedOption={getSelectedOption}
-            TotalEffort={TotalEffort}
-            RevisionHistory={RevisionHistory}
-            Designations={Designations}
-            Skills={Skills}
-            selectedProject={selectedProject}
-          />
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <div className="row">
-            <div className="col-lg-12 col-xl-12 txtRight">
-              <DropDown
-                dropdown_list={projects}
-                selected_field_name="project_name"
-                unique_field_name="project_id"
-                onChange={(selected_option) =>
-                  setSelectedProject(selected_option)
-                }
-                selected_option={selectedProject}
-              />
+        {showProjectComparison ? (
+          <React.Fragment>
+            <ProjectComparison
+              projects={projects}
+              candidates={candidates}
+              skillSets={skillSet}
+              designations={designations}
+              dropdown_list={dropdown_list}
+              getSelectedOption={getSelectedOption}
+              TotalEffort={TotalEffort}
+              RevisionHistory={RevisionHistory}
+              Designations={Designations}
+              Skills={Skills}
+              selectedProject={selectedProject}
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <div className="row">
+              <div className="col-lg-12 col-xl-12 txtRight">
+                <DropDown
+                  dropdown_list={projects}
+                  selected_field_name="project_name"
+                  unique_field_name="project_id"
+                  onChange={(selected_option) =>
+                    setSelectedProject(selected_option)
+                  }
+                  selected_option={selectedProject}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12 col-xl-12">
-              <div className="">
+            <div className="row">
+              <div className="col-lg-12 col-xl-12">
                 <div className="">
-                  <h4 className=""></h4>
-                  <div className="card-header-right"></div>
-                </div>
-                <div className="">
-                  <div className="row">
-                    <div className="col-lg-6 col-xl-6">
-                      <ProjectComponent
-                        projects={projects}
-                        candidates={candidates}
-                        skillSets={skillSet}
-                        designations={designations}
-                        dropdown_list={dropdown_list}
-                        getSelectedOption={getSelectedOption}
-                        TotalEffort={TotalEffort}
-                        RevisionHistory={RevisionHistory}
-                        Designations={Designations}
-                        Skills={Skills}
-                        selectedProject={selectedProject}
-                      />
+                  <div className="">
+                    <h4 className=""></h4>
+                    <div className="card-header-right"></div>
+                  </div>
+                  <div className="">
+                    <div className="row">
+                      <div className="col-lg-6 col-xl-6">
+                        <ProjectComponent
+                          projects={projects}
+                          candidates={candidates}
+                          skillSets={skillSet}
+                          designations={designations}
+                          dropdown_list={dropdown_list}
+                          getSelectedOption={getSelectedOption}
+                          TotalEffort={TotalEffort}
+                          RevisionHistory={RevisionHistory}
+                          Designations={Designations}
+                          Skills={Skills}
+                          selectedProject={selectedProject}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </React.Fragment>
-      )}
+          </React.Fragment>
+        )}
       </div>
     </React.Fragment>
   );
