@@ -6,6 +6,7 @@ import DropDown from "../utils/components/DropDown";
 import { pieChartData, rangeBarChartData } from "../utils/charts/chartData";
 import ProjectComponent from "../components/Project";
 import ProjectComparison from "../components/ProjectComparison";
+import CandidateSelection from "../components/CandidateSelection";
 
 const dropdown_list = [
   {
@@ -30,6 +31,17 @@ const dropdown_list = [
   },
 ];
 
+const candidate_suggestion_list = [
+  {
+    title: "Suggested Candidates",
+    id: 1,
+  },
+  {
+    title: "Ideal Candidates",
+    id: 2,
+  },
+];
+
 const Project = () => {
   const { projects, candidates, skillSet, designations } = store(
     (state) => state
@@ -40,7 +52,7 @@ const Project = () => {
   );
 
   const [showProjectComparison, setShowProjectComparison] =
-    React.useState(true);
+    React.useState(false);
 
   const getSelectedOption = (
     field_name,
@@ -230,6 +242,16 @@ const Project = () => {
                           Designations={Designations}
                           Skills={Skills}
                           selectedProject={selectedProject}
+                        />
+                      </div>
+                      <div className="col-lg-6 col-xl-6">
+                        <CandidateSelection
+                          candidate_suggestion_list={candidate_suggestion_list}
+                          selectedProject={selectedProject}
+                          projects={projects}
+                          candidates={candidates}
+                          skillSet={skillSet}
+                          designations={designations}
                         />
                       </div>
                     </div>

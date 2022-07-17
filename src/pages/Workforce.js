@@ -3,7 +3,6 @@ import store from "../store/MasterStore";
 import Modal from "../utils/components/Modal";
 import { SpiderWeb } from "../utils/charts";
 import { getRandomValue } from "../utils/commonFunctions";
-import { spiderWebData } from "../utils/charts/chartData";
 
 const Workforce = () => {
   const { candidates, skillSet, designations } = store((state) => state);
@@ -20,7 +19,6 @@ const Workforce = () => {
 
   const getDesignationName = (id) => {
     const designation = designations.find((des) => des.designation_id === id);
-
     if (designation) return designation.designation_name;
     return "";
   };
@@ -78,14 +76,11 @@ const Workforce = () => {
   };
 
   const dataSet = (data) => {
-    console.log({ data });
     const { skill_set } = data;
-    console.log({ skill_set });
     const _dataSet = skill_set.map(({ skill_id, level }) => {
       const { skill_name } = skillSet.find((sk) => sk.skill_id === skill_id);
       return [skill_name, level];
     });
-    console.log({ _dataSet });
     return { rows: _dataSet };
   };
 
