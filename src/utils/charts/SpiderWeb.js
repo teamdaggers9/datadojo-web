@@ -16,21 +16,38 @@ const SpiderWeb = ({ chartTitle, chartData, cId }) => {
       // create radar chart
       var chart = anychart.radar();
 
+      chart.legend().fontColor("#2A2550");
+
       // set default series type
       chart.defaultSeriesType("area");
 
       // set chart data
       chart.data(chartData);
 
-      chart.title(chartTitle);
+      chartTitle !== '' && chart.title(chartTitle);
+      // title formatting
+      var title = chart.title();
+      title.fontColor("#2A2550");
       chart.palette(["#e46858"]);
 
+      // x-labels formatting
+      var xLabels = chart.xAxis().labels();
+      xLabels.fontColor("#2A2550");
+
+      // y-labels formatting
+      var yLabels = chart.yAxis().labels();
+      yLabels.fontColor("#2A2550");
+
       // set yAxis settings
-      chart.yAxis().stroke("#545f69");
-      chart.yAxis().ticks().stroke("#545f69");
+      chart.yAxis().stroke("#2A2550");
+      chart.yAxis().ticks().stroke("#2A2550");
 
       // set yAxis labels settings
       chart.yScale().minimum(0).maximum(4).ticks({ interval: 1 });
+
+      // set tooltip text template
+      var tooltip = chart.getSeries(0).tooltip();
+      tooltip.format("Level: {%value}");
 
       // set container id for the chart
       chart.container(`container${cId}`);

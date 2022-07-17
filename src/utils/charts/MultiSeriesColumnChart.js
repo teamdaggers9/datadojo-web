@@ -1,12 +1,26 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle, cId, height }) => {
+const MultiSeriesColumnChart = ({
+  chartTitle,
+  chartData,
+  xAxisTitle,
+  yAxisTitle,
+  cId,
+  height,
+}) => {
   const { anychart, isAnychartReady } = useAnychart();
 
   useEffect(() => {
     isAnychartReady && anychart && renderChart();
-  }, [chartTitle, chartData, xAxisTitle, yAxisTitle, isAnychartReady, anychart]);
+  }, [
+    chartTitle,
+    chartData,
+    xAxisTitle,
+    yAxisTitle,
+    isAnychartReady,
+    anychart,
+  ]);
 
   const renderChart = () => {
     anychart.onDocumentReady(() => {
@@ -15,13 +29,29 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
       // create column chart
       let chart = anychart.column();
 
-      // chart.title(chartTitle);
+      // title formatting
+      chartTitle !== '' && chart.title(chartTitle);
+      var title = chart.title();
+      title.fontColor("#2A2550");
+      chart.legend().fontColor("#2A2550");
       chart.width("99%");
-      chart.maxPointWidth("10%");
+      chart.maxPointWidth("15%");
       chart.minPointLength(5);
-      chart.barsPadding(-0.8);  // set the padding between columns
-      chart.yAxis().title(yAxisTitle);  // set titles for Y-axis
-      chart.xAxis().title(xAxisTitle);  // set titles for X-axis
+      chart.barsPadding(-0.7); // set the padding between columns
+      chart.yAxis().title(yAxisTitle); // set titles for Y-axis
+      var yTitle = chart.yAxis().title();
+      yTitle.fontColor("#2A2550");
+      chart.xAxis().title(xAxisTitle); // set titles for X-axis
+      var xTitle = chart.xAxis().title();
+      xTitle.fontColor("#2A2550");
+
+      // x-labels formatting
+      var xLabels = chart.xAxis().labels();
+      xLabels.fontColor("#2A2550");
+
+      // y-labels formatting
+      var yLabels = chart.yAxis().labels();
+      yLabels.fontColor("#2A2550");
 
       // set chart data
       let dataSet = anychart.data.set(chartData.rows);
@@ -45,19 +75,19 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
         lineCap: "round",
         thickness: 0.5,
       });
-      
 
       // create the second series and set the data and options
       let series2 = chart.column(mapping2);
-      series2.fill({ keys: ["#EE5007", "#B22727"], angle: 90, opacity: 1 });
+      // series2.fill({ keys: ["#EE5007", "#B22727"], angle: 90, opacity: 1 });
+      series2.fill({ keys: ["#9370DB", "#4B0082"], angle: 90, opacity: 1 });
       series2.stroke({
-        keys: ["#EE5007", "#B22727"],
+        // keys: ["#EE5007", "#B22727"],
+        keys: ["#9370DB", "#4B0082"],
         angle: 90,
         lineJoin: "round",
         lineCap: "round",
         thickness: 0.5,
       });
-      
 
       let roundBackground = chart.background();
       // set corner type
@@ -65,12 +95,11 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
       // apply corner type only for top-left and bottom-right corners.
       roundBackground.corners(10, 10, 0, 0);
 
-
       // turn on legend and tune it
-      if(chartData.hasOwnProperty("header")) {
+      if (chartData.hasOwnProperty("header")) {
         series1.name(chartData.header[1]);
         series2.name(chartData.header[2]);
-        chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0])
+        chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0]);
       } else {
         chart.legend().enabled(false);
       }
@@ -88,12 +117,11 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
         .titleFormat("{%X}")
         .format("{%SeriesName} : {%Value}{groupsSeparator: }");
 
-      let noData = chart.noData();
-
       //Set no data label settings
+      let noData = chart.noData();
       noData.label({
         text: "Chart has no data.",
-        fontColor: "#B0C0D7",
+        fontColor: "#2A2550",
         fontFamily: "Roboto",
         fontWeight: "500",
       });
@@ -107,11 +135,7 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
     });
   };
   return (
-    <div
-      id={`container${cId}`}
-      className="chartContainer"
-      style={{ height }}
-    />
+    <div id={`container${cId}`} className="chartContainer" style={{ height }} />
   );
 };
 
