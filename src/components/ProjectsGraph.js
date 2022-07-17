@@ -189,8 +189,10 @@ const ProjectGraph = () => {
                 href="#"
                 id={eachOption.value}
                 onClick={() => {
-                  setCurrentOption(eachOption.value);
-                  setIsVisible(false);
+                  if (currentOption !== eachOption.value) {
+                    setCurrentOption(eachOption.value);
+                    setIsVisible(false);
+                  } 
                 }}
                 key={index}
               >

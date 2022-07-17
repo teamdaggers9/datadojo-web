@@ -13,13 +13,15 @@ const Project = ({
   RevisionHistory,
   Designations,
   Skills,
-  selectedProject = { selectedProject },
+  selectedProject,
+  renderAllCharts = false,
+  setSelectedProject,
 }) => {
   const [selectedOption, setSelectedOption] = React.useState(
-    dropdown_list[0].id
+    renderAllCharts ? null : dropdown_list[0].id
   );
 
-  const Chart = () => {
+  const Chart = (selectedOption) => {
     const title = getSelectedOption(
       "title",
       selectedOption,
@@ -80,35 +82,56 @@ const Project = ({
     <React.Fragment>
       <div className="card">
         <div className="card-header">
-          <h4 className="card-title">
-            {getSelectedOption(
-              "project_name",
-              selectedProject,
-              "project_id",
-              projects
-            )}{" "}
-            | {getSelectedOption("title", selectedOption, "id", dropdown_list)}
-          </h4>
+          {renderAllCharts ? (
+            <h4 className="card-title">
+              {getSelectedOption(
+                "project_name",
+                selectedProject,
+                "project_id",
+                projects
+              )}{" "}
+            </h4>
+          ) : (
+            <h4 className="card-title">
+              {getSelectedOption(
+                "project_name",
+                selectedProject,
+                "project_id",
+                projects
+              )}{" "}
+              |{" "}
+              {getSelectedOption("title", selectedOption, "id", dropdown_list)}
+            </h4>
+          )}
           <div className="card-header-right">
-            <DropDown
-              dropdown_list={dropdown_list}
-              selected_field_name="title"
-              unique_field_name="id"
-              onChange={(selected_option) => setSelectedOption(selected_option)}
-              selected_option={selectedOption}
-            />
-            {/* <DropDown
-              dropdown_list={projects}
-              selected_field_name="project_name"
-              unique_field_name="project_id"
-              onChange={(selected_option) =>
-                setSelectedProject(selected_option)
-              }
-              selected_option={selectedProject}
-            /> */}
+            {renderAllCharts ? (
+              <DropDown
+                dropdown_list={projects}
+                selected_field_name="project_name"
+                unique_field_name="project_id"
+                onChange={(selected_option) =>
+                  setSelectedProject(selected_option)
+                }
+                selected_option={selectedProject}
+              />
+            ) : (
+              <DropDown
+                dropdown_list={dropdown_list}
+                selected_field_name="title"
+                unique_field_name="id"
+                onChange={(selected_option) =>
+                  setSelectedOption(selected_option)
+                }
+                selected_option={selectedOption}
+              />
+            )}
           </div>
         </div>
-        <div className="card-body">{Chart()}</div>
+        <div className="card-body">
+          {renderAllCharts
+            ? dropdown_list.map(({ id }) => Chart(id))
+            : Chart(selectedOption)}
+        </div>
       </div>
     </React.Fragment>
   );
