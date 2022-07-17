@@ -1,9 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { PieChart, RangeBarChart } from "../utils/charts";
 import { getRandomValue } from "../utils/commonFunctions";
-import store from "../store/MasterStore";
 import DropDown from "../utils/components/DropDown";
-import { pieChartData, rangeBarChartData } from "../utils/charts/chartData";
 
 const Project = ({
   projects,
@@ -22,25 +20,22 @@ const Project = ({
   );
 
   const Chart = (selectedOption) => {
-    const title = renderAllCharts ? getSelectedOption(
-      "title",
-      selectedOption,
-      "id",
-      dropdown_list
-    ) : "";
+    const title = renderAllCharts
+      ? getSelectedOption("title", selectedOption, "id", dropdown_list)
+      : "";
     if (selectedOption === 1) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
             <PieChart
-            chartTitle={""}
-            chartData={TotalEffort(selectedProject)}
-            xAxisTitle={"Project"}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+              chartTitle={title}
+              chartData={TotalEffort(selectedProject)}
+              xAxisTitle={"Project"}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
@@ -56,18 +51,18 @@ const Project = ({
       );
     }
     if (selectedOption === 2) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
-          <RangeBarChart
-            chartTitle={""}
-            chartData={RevisionHistory(selectedProject)}
-            xAxisTitle={""}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+            <RangeBarChart
+              chartTitle={title}
+              chartData={RevisionHistory(selectedProject)}
+              xAxisTitle={""}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
@@ -83,18 +78,18 @@ const Project = ({
       );
     }
     if (selectedOption === 4) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
-          <PieChart
-            chartTitle={""}
-            chartData={Designations(selectedProject)}
-            xAxisTitle={"Project"}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+            <PieChart
+              chartTitle={title}
+              chartData={Designations(selectedProject)}
+              xAxisTitle={"Project"}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
