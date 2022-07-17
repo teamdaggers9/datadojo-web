@@ -5,8 +5,8 @@
         "first_name": "Kaja",
         "last_name": "Fendley",
         "location": "Kolkata, India",
-        "lat": 10.049147,
-        "long": 125.0259763,
+        "lat": 22.572645,
+        "long": 88.363892,
         "email": "kfendley0@google.com",
         "doj": "10/19/2018",
         "skill_set": [
@@ -49,8 +49,8 @@
         "first_name": "Rubin",
         "last_name": "Burnie",
         "location": "Kolkata, India",
-        "lat": -13.5350286,
-        "long": -71.9067881,
+        "lat": 22.572645,
+        "long": 88.363892,
         "email": "rburnie1@about.me",
         "doj": "6/5/2021",
         "skill_set": [
@@ -101,8 +101,8 @@
         "first_name": "Joana",
         "last_name": "Labbe",
         "location": "Kolkata, India",
-        "lat": 6.5400402,
-        "long": 126.084947,
+        "lat": 22.572645,
+        "long": 88.363892,
         "email": "jlabbe2@ted.com",
         "doj": "3/24/2017",
         "skill_set": [
@@ -129,8 +129,8 @@
         "first_name": "Hedda",
         "last_name": "Antonietti",
         "location": "Kolkata, India",
-        "lat": 51.5491768,
-        "long": 7.2092264,
+        "lat": 22.572645,
+        "long": 88.363892,
         "email": "hantonietti3@123-reg.co.uk",
         "doj": "6/4/2018",
         "skill_set": [
@@ -169,8 +169,8 @@
         "first_name": "Xenia",
         "last_name": "Tiler",
         "location": "Kolkata, India",
-        "lat": 32.231566,
-        "long": 35.214616,
+        "lat": 22.572645,
+        "long": 88.363892,
         "email": "xtiler4@cornell.edu",
         "doj": "5/13/2020",
         "skill_set": [
@@ -212,9 +212,9 @@
         "profile_pic_url": "https://robohash.org/facilisdictamodi.png?size=50x50&set=set1",
         "first_name": "Viola",
         "last_name": "West",
-        "location": "Villa General Belgrano",
-        "lat": 59.925824,
-        "long": 10.6614716,
+        "location": "California, USA",
+        "lat": 36.778259,
+        "long": -119.417931,
         "email": "vwest5@state.tx.us",
         "doj": "5/3/2020",
         "skill_set": [
@@ -256,9 +256,9 @@
         "profile_pic_url": "https://robohash.org/architectovoluptatemvel.png?size=50x50&set=set1",
         "first_name": "Rheta",
         "last_name": "Shortell",
-        "location": "Buinsk",
-        "lat": 55.195577,
-        "long": 47.0592319,
+        "location": "Jakarta, Indonesia",
+        "lat": -6.2146,
+        "long": 106.8451,
         "email": "rshortell6@imdb.com",
         "doj": "6/26/2022",
         "skill_set": [
@@ -308,9 +308,9 @@
         "profile_pic_url": "https://robohash.org/inciduntnonet.png?size=50x50&set=set1",
         "first_name": "Marris",
         "last_name": "Mallabon",
-        "location": "Mutang",
-        "lat": 19.804587,
-        "long": 109.355828,
+        "location": "Philippines",
+        "lat": 14.6000,
+        "long": 120.9833,
         "email": "mmallabon7@mediafire.com",
         "doj": "1/24/2021",
         "skill_set": [
@@ -336,9 +336,9 @@
         "profile_pic_url": "https://robohash.org/cumquenonut.png?size=50x50&set=set1",
         "first_name": "Cassy",
         "last_name": "Gloyens",
-        "location": "Temorlorong",
-        "lat": -7.13386,
-        "long": 113.51997,
+        "location": "Bengkulu, Indonesia",
+        "lat": -3.7956,
+        "long": 102.2592,
         "email": "cgloyens8@google.ca",
         "doj": "9/10/2021",
         "skill_set": [
@@ -372,9 +372,9 @@
         "profile_pic_url": "https://robohash.org/voluptatumquasimodi.png?size=50x50&set=set1",
         "first_name": "Reider",
         "last_name": "Panyer",
-        "location": "Villa General Belgrano",
-        "lat": -34.5869807,
-        "long": -58.5484437,
+        "location": "Los Angeles, USA",
+        "lat": 34.052235,
+        "long": -118.243683,
         "email": "rpanyer9@nbcnews.com",
         "doj": "2/16/2017",
         "skill_set": [
@@ -391,7 +391,7 @@
                 "level": 3
             }
         ],
-        "country_code": "id",
+        "country_code": "us",
         "assigned_projects": [4, 7, 1],
         "designation_id": 5
     }
