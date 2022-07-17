@@ -56,7 +56,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
         .format(function () {
           var count = this.getData("count");
           if (this.getData("count") === "null") count = "";
-          return count;
+          return "Employee Count:" + count;
         });
 
       // create zoom controls

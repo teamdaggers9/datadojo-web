@@ -52,6 +52,8 @@ const MultiSeriesColumnChart = ({
       // y-labels formatting
       var yLabels = chart.yAxis().labels();
       yLabels.fontColor("#2A2550");
+      yLabels.useHtml(false);
+      yLabels.format("{%value}{groupsSeparator:\\,}");
 
       // set chart data
       let dataSet = anychart.data.set(chartData.rows);
@@ -115,7 +117,7 @@ const MultiSeriesColumnChart = ({
         .offsetX(0)
         .offsetY(5)
         .titleFormat("{%X}")
-        .format("{%SeriesName} : {%Value}{groupsSeparator: }");
+        .format("{%SeriesName}: {%Value}{groupsSeparator:\\,}");
 
       //Set no data label settings
       let noData = chart.noData();

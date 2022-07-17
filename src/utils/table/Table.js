@@ -1,6 +1,7 @@
 import React from "react";
 import { formatThousandSeparator } from "../../utils/commonFunctions";
 import moment from "moment";
+import Avatar from 'react-avatar';
 
 const Table = ({ dataSet }) => {
   const columns = [
@@ -94,7 +95,7 @@ const Table = ({ dataSet }) => {
       return "w-130";
     }
     if (field_name === "project_name") {
-      return "w-200";
+      return "w-150";
     }
     if (field_name === "estimated_duration") {
       return "w-150";
@@ -168,10 +169,8 @@ const Table = ({ dataSet }) => {
                     return (
                       <td key={_index} className={setClassName(accessor)}>
                         <div className="projectImage">
-                          <img
-                            src={require("../../assets/images/dummy-project-icon.png")}
-                            width="18px"
-                          />{" "}
+                          <Avatar name={data[accessor]} size="22px" round={true} textSizeRatio={2}/>
+                          {" "}
                           {data[accessor]}
                         </div>
                       </td>
@@ -195,12 +194,20 @@ const Table = ({ dataSet }) => {
                     );
                   }
                   if (
-                    accessor === "team_strength" ||
                     accessor === "planned_effort" ||
                     accessor === "actual_effort" ||
                     accessor === "scrum_activity" ||
                     accessor === "development_activity" ||
-                    accessor === "debug_time" ||
+                    accessor === "debug_time"
+                  ) {
+                    return (
+                      <td key={_index} className="txtRight">
+                        {data[accessor]+" hrs"}
+                      </td>
+                    );
+                  }
+                  if (
+                    accessor === "team_strength" ||
                     accessor === "bugs_reported"
                   ) {
                     return (

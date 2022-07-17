@@ -15,6 +15,11 @@ const PieChart = ({ chartData, chartTitle, cId, height }) => {
       if (chartElement !== null) chartElement.innerHTML = "";
       const chart = anychart.pie(chartData);
 
+      // set tooltip text template
+      var tooltip = chart.tooltip();
+      // tooltip.title().text("Content");
+      tooltip.format("Value: {%value}{groupsSeparator:\\,}");
+
       // title formatting
       chartTitle !== "" && chart.title(chartTitle);
       var title = chart.title();
@@ -24,7 +29,7 @@ const PieChart = ({ chartData, chartTitle, cId, height }) => {
       chart.container(containerId);
 
       chart.legend().fontColor("#2A2550");
-      
+
       // set the position of labels
       chart.labels().position("outside");
       chart.labels().fontColor("#2A2550");

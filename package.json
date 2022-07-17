@@ -5,7 +5,9 @@
   "dependencies": {
     "firebase": "^9.9.0",
     "moment": "^2.29.4",
+    "prop-types": "^15.8.1",
     "react": "^17.0.1",
+    "react-avatar": "^5.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^2.1.3",
