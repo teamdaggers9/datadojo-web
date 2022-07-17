@@ -87,8 +87,8 @@ const CandidateSelection = ({
   };
 
   const EmployeeCard = ({ data }) => (
-    <div className="col-lg-4 col-md-4 col-12">
-      <div className="team-style-default">
+    <div className="col-lg-5 col-md-5">
+      <div className="">
         <div className="inner">
           <div className="thumbnail">
             <img src={data.profile_pic_url} alt="Corporate Template" />
@@ -125,7 +125,7 @@ const CandidateSelection = ({
               >
                 Skill Set
               </button>
-              <br />
+             
             </p>
           </div>
         </div>
@@ -149,10 +149,29 @@ const CandidateSelection = ({
         </div>
         <div className="card-body">
           <div className="containerFull">
-            <div className="row row--15">
-              {suggestedCandidates.map((data, index) => (
-                <EmployeeCard key={index} data={data} />
-              ))}
+            <div className="row">
+              <div className="col-lg-7 col-md-7">
+                  <div className="form-container">
+                  <div className="checkbox-container">
+                    <input type="checkbox" id="apple"/>
+                    <label className="checkbox" for="apple">Apple Mac</label>
+                  </div>
+                  <div className="checkbox-container">
+                    <input type="checkbox" id="microsoft"/>
+                    <label className="checkbox" for="microsoft">Microsoft OS</label>
+                  </div>
+                  <div className="checkbox-container">
+                    <input type="checkbox" id="linux"/>
+                    <label className="checkbox" for="linux">Linux OS</label>
+                  </div>
+                </div>
+              </div>
+              {suggestedCandidates.map((data, index) => {
+                if (index < 1) {
+                    return <EmployeeCard data={data} key={index} />;
+                }
+                return null;
+              })}
             </div>
           </div>
         </div>
