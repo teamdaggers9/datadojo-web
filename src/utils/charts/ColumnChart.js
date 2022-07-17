@@ -34,6 +34,8 @@ const ColumnChart = ({
       // y-labels formatting
       var yLabels = chart.yAxis().labels();
       yLabels.fontColor("#2A2550");
+      yLabels.useHtml(false);
+      yLabels.format("{%value}{groupsSeparator:\\,}");
 
       chart.legend().fontColor("#2A2550");
 
@@ -50,7 +52,7 @@ const ColumnChart = ({
 
       // set tooltip text template
       var tooltip = chart.getSeries(0).tooltip();
-      tooltip.format(yAxisTitle + ": {%value}");
+      tooltip.format(yAxisTitle + ": {%value}{groupsSeparator:\\,}");
 
       // set the titles and ui of the axes
       var xTitle = chart.xAxis().title(xAxisTitle);
