@@ -24,6 +24,21 @@ const Project = ({
       ? getSelectedOption("title", selectedOption, "id", dropdown_list)
       : "";
     if (selectedOption === 1) {
+      if(renderAllCharts){
+        return (
+          <React.Fragment>
+            <PieChart
+            chartTitle={""}
+            chartData={TotalEffort(selectedProject)}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Days"}
+            cId={getRandomValue("number", 3)}
+            height="400px"
+          />
+          <div className="hDevider"></div>
+          </React.Fragment>
+        );
+      }
       return (
         <PieChart
           chartTitle={title}
@@ -36,6 +51,21 @@ const Project = ({
       );
     }
     if (selectedOption === 2) {
+      if(renderAllCharts){
+        return (
+          <React.Fragment>
+          <RangeBarChart
+            chartTitle={""}
+            chartData={RevisionHistory(selectedProject)}
+            xAxisTitle={""}
+            yAxisTitle={"Days"}
+            cId={getRandomValue("number", 3)}
+            height="400px"
+          />
+          <div className="hDevider"></div>
+          </React.Fragment>
+        );
+      }
       return (
         <RangeBarChart
           chartTitle={title}
@@ -48,6 +78,21 @@ const Project = ({
       );
     }
     if (selectedOption === 4) {
+      if(renderAllCharts){
+        return (
+          <React.Fragment>
+          <PieChart
+            chartTitle={""}
+            chartData={Designations(selectedProject)}
+            xAxisTitle={"Project"}
+            yAxisTitle={"Days"}
+            cId={getRandomValue("number", 3)}
+            height="400px"
+          />
+          <div className="hDevider"></div>
+          </React.Fragment>
+        );
+      }
       return (
         <PieChart
           chartTitle={title}

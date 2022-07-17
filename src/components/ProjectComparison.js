@@ -46,6 +46,7 @@ const ProjectComparison = ({
             }
           />
         </div>
+        <div className="compareVs"><span>VS</span></div>
         <div className="col-lg-6 col-xl-6">
           <Project
             projects={projects}
