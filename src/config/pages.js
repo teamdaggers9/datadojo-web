@@ -15,12 +15,12 @@ const pages = [
     logo: require("../assets/images/icon-projects.svg"),
     component: <Project />,
   },
-  // {
-  //   title: "Skill Set",
-  //   url: "/skill-set",
-  //   logo: require("../assets/images/icon-skillset.svg"),
-  //   component: <SkillSet />,
-  // },
+  {
+    title: "Skill Set",
+    url: "/skill-set",
+    logo: require("../assets/images/icon-skillset.svg"),
+    component: <SkillSet />,
+  },
   {
     title: "Workforce",
     url: "/workforce",

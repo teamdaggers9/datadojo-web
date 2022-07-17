@@ -92,7 +92,7 @@ const Workforce = () => {
   return (
     <React.Fragment>
       <div className="containerFull">
-        <h2 className="txtCenter innerTitle">Team</h2>
+        {/* <h2 className="txtCenter innerTitle">Team</h2> */}
         <div className="row row--15">
           {candidates.map((data, ind) => (
             <EmployeeCard key={ind} data={data} />

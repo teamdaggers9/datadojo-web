@@ -28,7 +28,7 @@ const Project = ({
         return (
           <React.Fragment>
             <PieChart
-              chartTitle={""}
+              chartTitle={title}
               chartData={TotalEffort(selectedProject)}
               xAxisTitle={"Project"}
               yAxisTitle={"Days"}
@@ -55,7 +55,7 @@ const Project = ({
         return (
           <React.Fragment>
             <RangeBarChart
-              chartTitle={""}
+              chartTitle={title}
               chartData={RevisionHistory(selectedProject)}
               xAxisTitle={""}
               yAxisTitle={"Days"}
@@ -82,7 +82,7 @@ const Project = ({
         return (
           <React.Fragment>
             <PieChart
-              chartTitle={""}
+              chartTitle={title}
               chartData={Designations(selectedProject)}
               xAxisTitle={"Project"}
               yAxisTitle={"Days"}
