@@ -22,16 +22,16 @@ const Project = ({
   );
 
   const Chart = (selectedOption) => {
-    const title = getSelectedOption(
+    const title = renderAllCharts ? getSelectedOption(
       "title",
       selectedOption,
       "id",
       dropdown_list
-    );
+    ) : "";
     if (selectedOption === 1) {
       return (
         <PieChart
-          chartTitle={""}
+          chartTitle={title}
           chartData={TotalEffort(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -43,7 +43,7 @@ const Project = ({
     if (selectedOption === 2) {
       return (
         <RangeBarChart
-          chartTitle={""}
+          chartTitle={title}
           chartData={RevisionHistory(selectedProject)}
           xAxisTitle={""}
           yAxisTitle={"Days"}
@@ -55,7 +55,7 @@ const Project = ({
     if (selectedOption === 4) {
       return (
         <PieChart
-          chartTitle={""}
+          chartTitle={title}
           chartData={Designations(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -67,7 +67,7 @@ const Project = ({
     if (selectedOption === 5) {
       return (
         <PieChart
-          chartTitle={""}
+          chartTitle={title}
           chartData={Skills(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
