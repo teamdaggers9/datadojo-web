@@ -21,14 +21,19 @@ const WorkforceDist = () => {
     };
   });
   return (
-    <div className="card-body">
-      <DotMap
-        chartTitle={"Workforce Distribution"}
-        chartData={dotmapData}
-        cId={getRandomValue("number", 3)}
-        height="400px"
-      />
-    </div>
+    <React.Fragment>
+      <div className="card-header">
+        <h4 className="card-title">Organisation's Workforce Distribution</h4>
+      </div>
+      <div className="card-body">
+        <DotMap
+          chartTitle={''}
+          chartData={dotmapData}
+          cId={getRandomValue("number", 3)}
+          height="400px"
+        />
+      </div>
+    </React.Fragment>
   );
 };
 

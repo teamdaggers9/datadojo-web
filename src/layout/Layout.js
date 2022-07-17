@@ -9,12 +9,10 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <Header isActive={isActive} />
-      <main>
         <SideNavbar isActive={isActive} clicked={() => setIsActive((prevState) => !prevState)} />
         <div className={isActive ? "contentBody active" : "contentBody"}>
           <div className="containerFull">{children}</div>
         </div>
-      </main>
       <Footer />
     </React.Fragment>
   );
