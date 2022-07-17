@@ -25,6 +25,10 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
         .text(chartTitle)
         .padding([0, 0, 20, 0]);
 
+      // title formatting
+      var title = map.title();
+      title.fontColor("#2A2550");
+
       // creates Dataset from Sample data
       var dataSet = anychart.data.set(chartData);
       let series = map.marker(dataSet);
@@ -34,7 +38,7 @@ const DotMap = ({ chartTitle, chartData, cId, height }) => {
         .type("circle")
         .size(4)
         .labels(false)
-        .selectionMode("none");
+        // .selectionMode("none");
 
       // Enables map tooltip and sets settings for tooltip
       map.tooltip().title().fontColor("#fff");
