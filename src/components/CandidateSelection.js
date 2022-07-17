@@ -17,22 +17,36 @@ const CandidateSelection = ({
     candidate_suggestion_list[0].id
   );
 
+  const requiredSkillSetBasedOnProject = () => {
+    const { required_skillset } = projects.find(
+      (project) => project.project_id === selectedProject
+    );
+    return required_skillset;
+  };
+
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [suggestedCandidates, setSuggestedCandidates] = useState([]);
   const [idealCandidates, setIdealCandidates] = useState([]);
+  const [requiredSkills, setRequiredSkills] = useState(
+    requiredSkillSetBasedOnProject(selectedProject)
+  );
 
-  console.log({ candidates, selectedProject });
+  //   const requiredSkills = [9];
 
-  const requiredSkills = [9];
+  const compareFunc = (a, b) => {
+    return b.percentile - a.percentile;
+  };
 
-  const suggeste_candidates = () => {
+  const suggeste_candidates = (is_ideal_candidates = false) => {
     // candidate list who are not working on the project
-    const candidates_list = candidates.filter((candidate) => {
-      return !candidate.assigned_projects.includes(selectedProject);
-    });
+    const candidates_list = is_ideal_candidates
+      ? candidates
+      : candidates.filter((candidate) => {
+          return !candidate.assigned_projects.includes(selectedProject);
+        });
 
-    console.log({ candidates_list, selectedProject });
+    console.log({ candidates_list, selectedProject, is_ideal_candidates });
 
     // candidates based on skills
     const _candidates = candidates_list.filter((candidate) => {
@@ -42,6 +56,7 @@ const CandidateSelection = ({
     });
 
     console.log({ _candidates, requiredSkills });
+    const total_points = requiredSkills.length * 4;
 
     // candidate points
     for (const candidate of _candidates) {
@@ -52,9 +67,10 @@ const CandidateSelection = ({
         }
       }
       candidate.points = candidate_points;
+      candidate.percentile = (candidate_points / total_points) * 100;
     }
 
-    return _candidates;
+    return _candidates.sort(compareFunc);
   };
 
   const getDesignationName = (id) => {
@@ -66,10 +82,15 @@ const CandidateSelection = ({
   const [_dataSet, setDataSet] = useState(null);
 
   useEffect(() => {
-    const _suggeste_candidates = suggeste_candidates();
+    setRequiredSkills(requiredSkillSetBasedOnProject());
+  }, [selectedProject, selectedOption]);
+
+  useEffect(() => {
+    const _suggeste_candidates = suggeste_candidates(
+      selectedOption === 2 ? true : false
+    );
     setSuggestedCandidates(_suggeste_candidates);
-    console.log({ _suggeste_candidates });
-  }, [candidates]);
+  }, [requiredSkills, selectedOption]);
 
   const modalHeader = () => {
     const { first_name, last_name } = selectedCandidate;
@@ -77,7 +98,6 @@ const CandidateSelection = ({
   };
 
   const dataSet = (data) => {
-    console.log({ data, skillSet });
     const { skill_set } = data;
     const _dataSet = skill_set.map(({ skill_id, level }) => {
       const { skill_name } = skillSet.find((sk) => sk.skill_id === skill_id);
@@ -105,6 +125,10 @@ const CandidateSelection = ({
               <br /> DAIPL/0121/0{data.employee_id}
             </span>
             <span className="team-form">
+              Percentile:
+              <br /> {data.percentile.toFixed(2)}%
+            </span>
+            <span className="team-form">
               <i className="flag">
                 <img
                   src={require(`../assets/images/flags/4x3/${data.country_code}.svg`)}
@@ -125,13 +149,23 @@ const CandidateSelection = ({
               >
                 Skill Set
               </button>
-             
             </p>
           </div>
         </div>
       </div>
     </div>
   );
+
+  const onChangeSkill = (skill_id) => {
+    const skill_index = requiredSkills.indexOf(skill_id);
+    let _requiredSkills = [...requiredSkills];
+    if (skill_index === -1) {
+      _requiredSkills = [...requiredSkills, skill_id];
+    } else {
+      _requiredSkills.splice(skill_index, 1);
+    }
+    setRequiredSkills(_requiredSkills);
+  };
 
   return (
     <React.Fragment>
@@ -151,26 +185,33 @@ const CandidateSelection = ({
           <div className="containerFull">
             <div className="row">
               <div className="col-lg-7 col-md-7">
-                  <div className="form-container">
-                  <div className="checkbox-container">
-                    <input type="checkbox" id="apple"/>
-                    <label className="checkbox" for="apple">Apple Mac</label>
-                  </div>
-                  <div className="checkbox-container">
-                    <input type="checkbox" id="microsoft"/>
-                    <label className="checkbox" for="microsoft">Microsoft OS</label>
-                  </div>
-                  <div className="checkbox-container">
-                    <input type="checkbox" id="linux"/>
-                    <label className="checkbox" for="linux">Linux OS</label>
-                  </div>
+                <div className="form-container">
+                  {requiredSkillSetBasedOnProject().map((skill_id) => {
+                    const { skill_name } = skillSet.find(
+                      (sk) => sk.skill_id === skill_id
+                    );
+                    return (
+                      <div className="checkbox-container">
+                        <input
+                          type="checkbox"
+                          id={skill_name}
+                          checked={requiredSkills.includes(skill_id)}
+                          onChange={() => onChangeSkill(skill_id)}
+                        />
+                        <label className="checkbox" for={skill_name}>
+                          {skill_name}
+                        </label>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               {suggestedCandidates.map((data, index) => {
-                if (index < 1) {
-                    return <EmployeeCard data={data} key={index} />;
-                }
-                return null;
+                // if (index < 1) {
+                //   return <EmployeeCard data={data} key={index} />;
+                // }
+                // return null;
+                return <EmployeeCard data={data} key={index} />;
               })}
             </div>
           </div>
