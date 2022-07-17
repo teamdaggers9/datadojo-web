@@ -172,19 +172,18 @@ const Project = () => {
         <div className="col-lg-12 col-xl-12 txtRight">
           <div className="flexSpaceCenterBetween">
             <span></span>
-            <div className="checkSwitch">
+            <div className="checkboxSlider">
               <span className="left">OFF</span>
-              <input
-                type="checkbox"
-                id="switch"
-                defaultChecked={showProjectComparison}
-                onChange={() => setShowProjectComparison((prev) => !prev)}
-              />
-              <label for="switch">
-                <span>Toggle</span>
-              </label>
-              <span className="right">ON</span>
-            </div>
+                <label className="switch" for="switch">
+                  <input type="checkbox" 
+                  id="switch"
+                  defaultChecked={showProjectComparison}
+                  onChange={() => setShowProjectComparison((prev) => !prev)} 
+                  />
+                  <div class="slider round"></div>
+                </label>
+                <span className="right">ON</span>
+              </div>
           </div>
         </div>
       </div>
