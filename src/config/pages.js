@@ -4,7 +4,8 @@ import {
   Dashboard,
   Project,
   SkillSet,
-  Workforce
+  Workforce,
+  About
 } from "../pages";
 
 const pages = [
@@ -31,6 +32,12 @@ const pages = [
     url: "/workforce",
     logo: require("../assets/images/icon-workforce.svg"),
     component: <Workforce />,
+  },
+  {
+    title: "About",
+    url: "/about",
+    logo: require("../assets/images/icon-about.svg"),
+    component: <About />,
   },
 ];
 
