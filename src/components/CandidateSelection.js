@@ -107,8 +107,8 @@ const CandidateSelection = ({
   };
 
   const EmployeeCard = ({ data }) => (
-    <div className="col-lg-5 col-md-5">
-      <div className="">
+    <div className="col-lg-6 col-md-6">
+      <div className="skillItemBox">
         <div className="inner">
           <div className="thumbnail">
             <img src={data.profile_pic_url} alt="Corporate Template" />
@@ -117,17 +117,21 @@ const CandidateSelection = ({
             <h2 className="title">
               {data.first_name} {data.last_name}
             </h2>
-            <h6 className="subtitle theme-gradient">
+            <h6 className="subtitle">
               {getDesignationName(data.designation_id)}
             </h6>
             <span className="team-form">
               Employee ID:
               <br /> DAIPL/0121/0{data.employee_id}
             </span>
-            <span className="team-form">
-              Percentile:
-              <br /> {data.percentile.toFixed(2)}%
-            </span>
+            <div className="team-form">
+            Percentile:
+              <div className="progressBar">
+                <span className="progressHandel high" style={{width: `${data.percentile.toFixed(2)}%`}}></span>
+              </div>
+              
+              {/* <br /> {data.percentile.toFixed(2)}% */}
+            </div>
             <span className="team-form">
               <i className="flag">
                 <img
@@ -180,12 +184,17 @@ const CandidateSelection = ({
               selected_option={selectedOption}
             />
           </div>
+          
         </div>
-        <div className="card-body">
-          <div className="containerFull">
-            <div className="row">
-              <div className="col-lg-7 col-md-7">
-                <div className="form-container">
+        <div className="card-body plr0 card2">
+                <span className="skillISlidBtn">Tech Stack</span>
+                <div className="skillItemsWrap active">
+                  <div className="slideHeader">
+                    <span>Tech Stack</span>
+                    <a class="closeSlide" href="javascript:void(0)">×</a>
+                  </div>
+                  <div className="skillItemsScroll">
+                  <div className="form-container">
                   {requiredSkillSetBasedOnProject().map((skill_id) => {
                     const { skill_name } = skillSet.find(
                       (sk) => sk.skill_id === skill_id
@@ -202,10 +211,18 @@ const CandidateSelection = ({
                           {skill_name}
                         </label>
                       </div>
+                      
                     );
                   })}
                 </div>
+                </div>
               </div>
+            <div className="candidateInnerWrap">   
+                  
+            <div className="row">
+              {/* <div className="col-lg-6 col-md-6">
+                
+              </div> */}
               {suggestedCandidates.map((data, index) => {
                 // if (index < 1) {
                 //   return <EmployeeCard data={data} key={index} />;
@@ -214,8 +231,8 @@ const CandidateSelection = ({
                 return <EmployeeCard data={data} key={index} />;
               })}
             </div>
-          </div>
-        </div>
+          </div> 
+          </div>      
       </div>
       {showModal && (
         <Modal
