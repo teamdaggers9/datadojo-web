@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from "react-tooltip";
 
 const DropDown = ({
   dropdown_list,
@@ -7,7 +7,7 @@ const DropDown = ({
   onChange,
   selected_option,
   unique_field_name,
-  classes="flxCenter btnBorder"
+  classes = "flxCenter btnBorder",
 }) => {
   const [showDropDownList, setShowDropDownList] = React.useState(false);
   const dropDownRef = useRef(null);
@@ -35,28 +35,34 @@ const DropDown = ({
         type="button"
         className={classes}
         ref={dropDownRef}
-        onClick={() => setShowDropDownList((prev)=>!prev)}
+        onClick={() => setShowDropDownList((prev) => !prev)}
         data-tip={getTitle()}
       >
-        {getTitle().slice(0,15)+'...'} <i className="downArrowDark"></i>
+        {getTitle().slice(0, 15) + "..."} <i className="downArrowDark"></i>
       </button>
-      <div className={showDropDownList ? "dropdownMenu dropdownRight show" : "dropdownMenu dropdownRight"}>
+      <div
+        className={
+          showDropDownList
+            ? "dropdownMenu dropdownRight show"
+            : "dropdownMenu dropdownRight"
+        }
+      >
         <div className="dropdownInnerWrap">
-        {dropdown_list.map((data, index) => (
-          <a
-            className="dropdownItem"
-            href="javascript:void(0)"
-            onClick={() => {
-              onChange(data[unique_field_name]);
-            }}
-            key={index}
-          >
-            {data[selected_field_name]}
-          </a>
-        ))}
+          {dropdown_list.map((data, index) => (
+            <a
+              className="dropdownItem"
+              href="javascript:void(0)"
+              onClick={() => {
+                onChange(data[unique_field_name]);
+              }}
+              key={index}
+            >
+              {data[selected_field_name]}
+            </a>
+          ))}
         </div>
       </div>
-      <ReactTooltip effect="solid"/>
+      <ReactTooltip effect="solid" />
     </div>
   );
 };

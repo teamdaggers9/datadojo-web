@@ -3,6 +3,7 @@ import Routes from "./routes";
 import { fetchCollections, createNewCollection } from "./services/firebase";
 import Loader from "./utils/components/loader";
 import "./assets/css/custom.css";
+import "./assets/css/custom-style.css";
 import "./assets/css/grid.css";
 import * as Workforce from "./mock-data/workforce.json";
 

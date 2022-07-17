@@ -45,27 +45,27 @@ const Table = ({ dataSet }) => {
       order_id: 8,
     },
     {
-      Header: "Planned Effort (in hours)",
+      Header: "Planned Effort",
       accessor: "planned_effort",
       order_id: 9,
     },
     {
-      Header: "Actual Effort (in hours)",
+      Header: "Actual Effort",
       accessor: "actual_effort",
       order_id: 10,
     },
     {
-      Header: "Scrum Activity (in hours)",
+      Header: "Scrum Activity",
       accessor: "scrum_activity",
       order_id: 11,
     },
     {
-      Header: "Development Time (in hours)",
+      Header: "Development Time",
       accessor: "development_activity",
       order_id: 12,
     },
     {
-      Header: "Debug Time (in hours)",
+      Header: "Debug Time",
       accessor: "debug_time",
       order_id: 13,
     },
