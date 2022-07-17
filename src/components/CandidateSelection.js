@@ -32,6 +32,8 @@ const CandidateSelection = ({
     requiredSkillSetBasedOnProject(selectedProject)
   );
 
+  const [showFilter, setShowFilter] = useState(false);
+
   //   const requiredSkills = [9];
 
   const compareFunc = (a, b) => {
@@ -106,6 +108,12 @@ const CandidateSelection = ({
     return { rows: _dataSet };
   };
 
+  const setProgreessClass = (percentile) => {
+    if (percentile < 50) return "progressHandel low";
+    if (percentile < 75) return "progressHandel medium";
+    return "progressHandel high";
+  };
+
   const EmployeeCard = ({ data }) => (
     <div className="col-lg-6 col-md-6">
       <div className="skillItemBox">
@@ -125,11 +133,14 @@ const CandidateSelection = ({
               <br /> DAIPL/0121/0{data.employee_id}
             </span>
             <div className="team-form">
-            Percentile:
+              Potential
               <div className="progressBar">
-                <span className="progressHandel high" style={{width: `${data.percentile.toFixed(2)}%`}}></span>
+                <span
+                  className={setProgreessClass(data.percentile.toFixed(2))}
+                  style={{ width: `${data.percentile.toFixed(2)}%` }}
+                  title={`${data.percentile.toFixed(2)}%`}
+                ></span>
               </div>
-              
               {/* <br /> {data.percentile.toFixed(2)}% */}
             </div>
             <span className="team-form">
@@ -175,6 +186,7 @@ const CandidateSelection = ({
     <React.Fragment>
       <div className="card">
         <div className="card-header">
+          <h4 className="card-title"/>
           <div className="card-header-right">
             <DropDown
               dropdown_list={candidate_suggestion_list}
@@ -184,55 +196,58 @@ const CandidateSelection = ({
               selected_option={selectedOption}
             />
           </div>
-          
         </div>
         <div className="card-body plr0 card2">
-                <span className="skillISlidBtn">Tech Stack</span>
-                <div className="skillItemsWrap active">
-                  <div className="slideHeader">
-                    <span>Tech Stack</span>
-                    <a class="closeSlide" href="javascript:void(0)">×</a>
-                  </div>
-                  <div className="skillItemsScroll">
-                  <div className="form-container">
-                  {requiredSkillSetBasedOnProject().map((skill_id) => {
-                    const { skill_name } = skillSet.find(
-                      (sk) => sk.skill_id === skill_id
-                    );
-                    return (
-                      <div className="checkbox-container">
-                        <input
-                          type="checkbox"
-                          id={skill_name}
-                          checked={requiredSkills.includes(skill_id)}
-                          onChange={() => onChangeSkill(skill_id)}
-                        />
-                        <label className="checkbox" for={skill_name}>
-                          {skill_name}
-                        </label>
-                      </div>
-                      
-                    );
-                  })}
-                </div>
-                </div>
+          <span className="skillISlidBtn" onClick={() => setShowFilter(true)}>
+            Tech Stack
+          </span>
+          <div
+            className={showFilter ? "skillItemsWrap active" : "skillItemsWrap"}
+          >
+            <div className="slideHeader">
+              <span>Tech Stack</span>
+              <a
+                class="closeSlide"
+                href="javascript:void(0)"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowFilter(false);
+                }}
+              >
+                ×
+              </a>
+            </div>
+            <div className="skillItemsScroll">
+              <div className="form-container">
+                {requiredSkillSetBasedOnProject().map((skill_id) => {
+                  const { skill_name } = skillSet.find(
+                    (sk) => sk.skill_id === skill_id
+                  );
+                  return (
+                    <div className="checkbox-container">
+                      <input
+                        type="checkbox"
+                        id={skill_name}
+                        checked={requiredSkills.includes(skill_id)}
+                        onChange={() => onChangeSkill(skill_id)}
+                      />
+                      <label className="checkbox" for={skill_name}>
+                        {skill_name}
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
-            <div className="candidateInnerWrap">   
-                  
+            </div>
+          </div>
+          <div className="candidateInnerWrap">
             <div className="row">
-              {/* <div className="col-lg-6 col-md-6">
-                
-              </div> */}
               {suggestedCandidates.map((data, index) => {
-                // if (index < 1) {
-                //   return <EmployeeCard data={data} key={index} />;
-                // }
-                // return null;
                 return <EmployeeCard data={data} key={index} />;
               })}
             </div>
-          </div> 
-          </div>      
+          </div>
+        </div>
       </div>
       {showModal && (
         <Modal
