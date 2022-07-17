@@ -44,7 +44,11 @@ const DropDown = ({
         <div className="dropdownInnerWrap">
         {dropdown_list.map((data, index) => (
           <a
-            className="dropdownItem"
+          className={
+            selected_option === data[unique_field_name]
+              ? "dropdownItem active"
+              : "dropdownItem"
+          }
             href="javascript:void(0)"
             onClick={() => {
               onChange(data[unique_field_name]);
