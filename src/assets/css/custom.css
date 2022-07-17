@@ -98,7 +98,9 @@ select,
 .downArrow,
 button,
 .downArrowDark,
-.downArrow{
+.downArrow,
+.team-style-default,
+.inner{
   transition: all 0.4s;
 }
 
@@ -604,7 +606,7 @@ select {
 }
 
 .card-title {
-    font-size: 1.25rem;
+    font-size: 1rem 1.25rem;
     font-weight: 500;
     color: var(--dd-color-1);
     margin-bottom: 0rem;
@@ -617,7 +619,7 @@ select {
 }
 
 .card-body {
-    padding: 1.25rem;
+    padding: 1rem 1.25rem;
     flex: 1 1 auto;
 }
 .projectInnerWrap .card{
@@ -907,6 +909,9 @@ select {
 .team-style-default {
   margin-top: 75px;
   margin-bottom: 30px;
+  height: calc(100% - 105px);
+  display: flex;
+  flex-direction: column;
 }
 .team-style-default .inner {
   background: linear-gradient(180deg, #fff 20%, rgba(255, 255, 255, 1));
@@ -914,6 +919,14 @@ select {
   box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 5%);
   border-radius: var(--dd-radius-2);
   background-color: var(--dd-color-4);
+  flex: 1;
+}
+.team-style-default:hover .inner {
+  background: linear-gradient(180deg, rgba(249, 197, 79, 0.85) 20%, rgba(228,104,88, 0.85) 100%);
+  backdrop-filter: blur(4px) opacity(0.15);
+}
+.team-style-default:hover *{
+  color: var(--dd-color-4);
 }
 .team-style-default .inner .thumbnail {
   max-width: 150px;
@@ -926,6 +939,7 @@ select {
   min-width: 150px;
   min-height: 150px;
   overflow: hidden;
+  background: var(--dd-color-5);
 }
 .team-style-default .inner .thumbnail img {
   border-radius: 100%;
@@ -941,13 +955,14 @@ select {
   padding-bottom: 35px;
 }
 .team-style-default .inner .content .title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.4;
   font-weight: 700;
   margin-bottom: 6px;
 }
 .team-style-default .inner .content .subtitle {
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   line-height: 1.4;
   margin-bottom: 15px;
   display: inline-block;
@@ -964,6 +979,11 @@ select {
 .team-style-default .inner .content .description {
   margin-bottom: 0;
   padding: 0 5%;
+}
+.team-style-default:hover .skillsetBtn{
+  background: var(--dd-color-1);
+  border-color: var(--dd-color-1);
+  color: var(--dd-color-4);
 }
 
 /* About Us */
