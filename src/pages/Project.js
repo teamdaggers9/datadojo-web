@@ -34,10 +34,6 @@ const Project = () => {
     (state) => state
   );
 
-  const [selectedOption, setSelectedOption] = React.useState(
-    dropdown_list[0].id
-  );
-
   const [selectedProject, setSelectedProject] = React.useState(
     projects[0].project_id
   );
@@ -193,6 +189,7 @@ const Project = () => {
                     RevisionHistory={RevisionHistory}
                     Designations={Designations}
                     Skills={Skills}
+                    selectedProject={selectedProject}
                   />
                 </div>
                 <div className="col-lg-6 col-xl-6">
@@ -207,6 +204,7 @@ const Project = () => {
                     RevisionHistory={RevisionHistory}
                     Designations={Designations}
                     Skills={Skills}
+                    selectedProject={selectedProject}
                   />
                 </div>
               </div>
