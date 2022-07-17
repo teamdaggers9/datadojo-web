@@ -28,16 +28,17 @@ const DropDown = ({
   };
 
   return (
-    <div className="dropdown dropdownRight">
+    <div className={showDropDownList ? "dropdown show" : "dropdown"}>
       <button
         type="button"
-        className="btnPrimary"
+        className="btnPrimary flxCenter"
         ref={dropDownRef}
         onClick={() => setShowDropDownList(true)}
       >
-        {getTitle()} <i className="downArrow"></i>
+        <span>{getTitle()}</span><i className="downArrow"></i>
       </button>
-      <div className={showDropDownList ? "dropdownMenu show" : "dropdownMenu"}>
+      <div className={showDropDownList ? "dropdownMenu dropdownRight show" : "dropdownMenu dropdownRight"}>
+        <div className="dropdownInnerWrap">
         {dropdown_list.map((data, index) => (
           <a
             className="dropdownItem"
@@ -50,6 +51,7 @@ const DropDown = ({
             {data[selected_field_name]}
           </a>
         ))}
+        </div>
       </div>
     </div>
   );

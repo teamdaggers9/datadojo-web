@@ -129,7 +129,7 @@ const Project = () => {
     if (selectedOption === 1) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={''}
           chartData={TotalEffort()}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -141,9 +141,9 @@ const Project = () => {
     if (selectedOption === 2) {
       return (
         <RangeBarChart
-          chartTitle={title}
+          chartTitle={''}
           chartData={RevisionHistory()}
-          xAxisTitle={"Project"}
+          xAxisTitle={""}
           yAxisTitle={"Days"}
           cId={getRandomValue("number", 3)}
           height="400px"
@@ -153,7 +153,7 @@ const Project = () => {
     if (selectedOption === 5) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={''}
           chartData={Skills()}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -177,24 +177,16 @@ const Project = () => {
                   "project_id",
                   projects
                 )}{" "}
-                |{" "}
-                {getSelectedOption(
+                {/* |{" "} */}
+                {/* {getSelectedOption(
                   "title",
                   selectedOption,
                   "id",
                   dropdown_list
-                )}
+                )} */}
               </h4>
               <div className="card-header-right">
-                <DropDown
-                  dropdown_list={dropdown_list}
-                  selected_field_name="title"
-                  unique_field_name="id"
-                  onChange={(selected_option) =>
-                    setSelectedOption(selected_option)
-                  }
-                  selected_option={selectedOption}
-                />
+                
                 <DropDown
                   dropdown_list={projects}
                   selected_field_name="project_name"
@@ -203,6 +195,15 @@ const Project = () => {
                     setSelectedProject(selected_option)
                   }
                   selected_option={selectedProject}
+                />
+                <DropDown
+                  dropdown_list={dropdown_list}
+                  selected_field_name="title"
+                  unique_field_name="id"
+                  onChange={(selected_option) =>
+                    setSelectedOption(selected_option)
+                  }
+                  selected_option={selectedOption}
                 />
               </div>
             </div>

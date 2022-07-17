@@ -170,24 +170,26 @@ const ProjectGraph = () => {
               ).label
             }
           </h4>
-          <div className="dropdown dropdownRight">
+          <div className="dropdown">
             <button
               type="button"
               className="btnPrimary"
               onClick={() => setIsVisible((prev) => !prev)}
             >
+              <span>
               {
                 AppSetting.projectGraphOptions.find(
                   (each) => each.value === currentOption
                 ).label
               }{" "}
+              </span>
               <i className="downArrow"></i>
             </button>
-            <div className={`dropdownMenu ${isVisible ? "show" : ""}`}>
+            <div className={`dropdownMenu dropdownRight ${isVisible ? "show" : ""}`}>
               {AppSetting.projectGraphOptions.map((eachOption, index) => (
                 <a
                   className={`dropdownItem`}
-                  href="#"
+                  href="javascript:void(0)"
                   id={eachOption.value}
                   onClick={() => {
                     setCurrentOption(eachOption.value);
