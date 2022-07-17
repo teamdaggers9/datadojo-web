@@ -106,7 +106,7 @@ const ProjectGraph = () => {
       case 1:
         return (
           <MultiSeriesColumnChart
-            chartTitle={"Estimated vs Actual Duration"}
+            chartTitle={""}
             chartData={EstVsActualDuration()}
             xAxisTitle={"Project"}
             yAxisTitle={"Days"}
@@ -117,7 +117,7 @@ const ProjectGraph = () => {
       case 2:
         return (
           <MultiSeriesColumnChart
-            chartTitle={"Planned vs Actual Effort"}
+            chartTitle={""}
             chartData={EstVsActualEffort()}
             xAxisTitle={"Project"}
             yAxisTitle={"Hours"}
@@ -128,7 +128,7 @@ const ProjectGraph = () => {
       case 3:
         return (
           <ColumnChart
-            chartTitle={"Estimated Cost"}
+            chartTitle={""}
             chartData={EstCost()}
             xAxisTitle={"Project"}
             yAxisTitle={"Cost (in USD)"}
@@ -139,7 +139,7 @@ const ProjectGraph = () => {
       case 4:
         return (
           <ColumnChart
-            chartTitle={"Bugs Reported"}
+            chartTitle={""}
             chartData={BugsReported()}
             xAxisTitle={"Project"}
             yAxisTitle={"Bugs"}
@@ -150,7 +150,7 @@ const ProjectGraph = () => {
       case 5:
         return (
           <ColumnChart
-            chartTitle={"Team Strength"}
+            chartTitle={""}
             chartData={TeamStrength()}
             xAxisTitle={"Project"}
             yAxisTitle={"Team Strength"}
