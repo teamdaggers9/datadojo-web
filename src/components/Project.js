@@ -32,7 +32,7 @@ const Project = ({
     if (selectedOption === 1) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={""}
           chartData={TotalEffort(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -44,9 +44,9 @@ const Project = ({
     if (selectedOption === 2) {
       return (
         <RangeBarChart
-          chartTitle={title}
+          chartTitle={""}
           chartData={RevisionHistory(selectedProject)}
-          xAxisTitle={"Project"}
+          xAxisTitle={""}
           yAxisTitle={"Days"}
           cId={getRandomValue("number", 3)}
           height="400px"
@@ -56,7 +56,7 @@ const Project = ({
     if (selectedOption === 4) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={""}
           chartData={Designations(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
@@ -68,7 +68,7 @@ const Project = ({
     if (selectedOption === 5) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={""}
           chartData={Skills(selectedProject)}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}

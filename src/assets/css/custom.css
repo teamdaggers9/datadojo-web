@@ -76,12 +76,14 @@ td {
   --dd-color-3: #111;
   --dd-color-4: #fff;
   --dd-color-5: #efeff7;
+  --dd-color-6: #c5c5d6;
   --dd-error: #e74c3c;
   --dd-success: #4caf50;
   --dd-warning: #ffa755;
   --dd-shadow-1: 0px 0px 20px rgba(0, 0, 0, 0.1);
   --dd-radius-1: 1rem;
   --dd-radius-2: .5rem;
+  --dd-radius-3: 2rem;
 }
 
 a,
@@ -92,6 +94,9 @@ select,
 .nav-text,
 .btnPrimary,
 .btnSecondary,
+.downArrow,
+button,
+.downArrowDark,
 .downArrow{
   transition: all 0.4s;
 }
@@ -231,11 +236,12 @@ select {
 }
 
 .btnPrimary,
-.btnSecondary {
+.btnSecondary,
+.btnBorder {
   border: 0;
-  padding: 10px 15px;
-  font-weight: 500;
-  border-radius: var(--dd-radius-2);
+  padding: 8px 15px;
+  font-weight: 400;
+  border-radius: var(--dd-radius-3);
   cursor: pointer;
   font-size: 0.875rem;
   min-width: 100px;
@@ -260,13 +266,15 @@ select {
 
 .btnSecondary,
 .btnSecondary:disabled:hover {
-  border-color: var(--dd-color-1);
-  color: var(--dd-color-1);
+  border-color: var(--dd-color-2);
+  background: var(--dd-color-2);
+  color: var(--dd-color-4);
 }
 
 .btnSecondary:hover {
-  border-color: var(--dd-color-2);
-  color: var(--dd-color-2);
+  border-color: var(--dd-color-1);
+  background: var(--dd-color-1);
+  color: var(--dd-color-4);
   text-decoration: none;
 }
 
@@ -275,13 +283,33 @@ select {
   opacity: 0.2;
   cursor: not-allowed;
 }
-.downArrow{
-  background: url(../images/icon-arrow-down.svg) no-repeat center center / 100%;
+.btnBorder,
+.btnBorder:disabled:hover {
+  background: transparent;
+  border-color: var(--dd-color-1);
+  color: var(--dd-color-1);
+}
+
+.btnBorder:hover {
+  border-color: var(--dd-color-2);
+  background: var(--dd-color-2);
+  color: var(--dd-color-4);
+  text-decoration: none;
+}
+.downArrow, .downArrowDark{  
   width: 10px;
   height: 10px;
   display: inline-block;
 }
-
+.downArrow{
+  background: url(../images/icon-arrow-down.svg) no-repeat center center / 100%;
+}
+.downArrowDark{
+  background: url(../images/icon-arrow-down-dark.svg) no-repeat center center / 100%;
+}
+.btnSecondary .downArrowDark{
+  background: url(../images/icon-arrow-down.svg) no-repeat center center / 100%;
+}
 * {
   -webkit-text-size-adjust: none;
 }
@@ -333,6 +361,12 @@ select {
 .flxCenter{
   display: flex;
   align-items: center;
+}
+.flexSpaceCenterBetween{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 
@@ -537,6 +571,11 @@ select {
 .contentBody.active {
   margin-left: 6rem;
 }
+.projectInnerWrap{
+  padding: 10px;
+  background: var(--dd-color-5);
+  border-radius: var(--dd-radius-1);
+}
 
 .card {
   display: flex;
@@ -556,7 +595,7 @@ select {
 .card-header {
   position: relative;
   background: transparent;
-  padding: 1.5rem 1.875rem 1.25rem;
+  padding: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -564,8 +603,8 @@ select {
 }
 
 .card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 500;
     color: var(--dd-color-1);
     margin-bottom: 0rem;
 }
@@ -577,8 +616,12 @@ select {
 }
 
 .card-body {
-    padding: 1.5rem;
+    padding: 1.25rem;
     flex: 1 1 auto;
+}
+.projectInnerWrap .card{
+  height: calc(100% - 0px);
+  margin-bottom: 0;
 }
 
 /* Table */
@@ -776,6 +819,7 @@ select {
 /* Dropdown */
 .dropdown {
   position: relative;
+  display: inline-block;
 }
 
 .dropdownMenu {
@@ -786,7 +830,7 @@ select {
     position: absolute;
     top: 100%;
     display: none;
-    min-width: 10rem;
+    min-width: 200px;
     padding: 0.5rem 0;
     margin: 0;
     font-size: 0.875rem;
@@ -812,10 +856,12 @@ select {
   display: inline-block;
   margin-right: 10px;
 }
-.dropdown.show .downArrow{
+.dropdown.show .downArrow, .dropdown.show .downArrowDark{
   transform: rotate(180deg);
 }
-
+.dropdown button:hover .downArrowDark{
+  background: url(../images/icon-arrow-down.svg) no-repeat center center / 100%;
+}
 .dropdownMenu.dropdownRight {
   left: auto;
   right: 0;
@@ -938,4 +984,60 @@ select {
 }
 .aboutContent{
   font-size: 1.5rem;
+}
+.checkSwitch{
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+.checkSwitch input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.checkSwitch label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 60px;
+  height: 30px;
+	background: var(--dd-color-6);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.checkSwitch label:after {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 3px;
+	width: 26px;
+	height: 26px;
+	background: #fff;
+	border-radius: 40px;
+	transition: 0.4s;
+}
+
+.checkSwitch input:checked + label {
+	background: var(--dd-color-2);
+}
+
+.checkSwitch input:checked + label:after {
+	left: calc(100% - 4px);
+	transform: translateX(-100%);
+}
+
+.checkSwitch label:active:after {
+	width: 35px;
+}
+.checkSwitch label span{
+  font-size: 0px;
+  opacity: 0;
+}
+.checkSwitch span.left{
+  margin-right: 10px;
+}
+.checkSwitch span.right{
+  margin-left: 10px;
 }

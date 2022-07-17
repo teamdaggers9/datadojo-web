@@ -6,6 +6,7 @@ const DropDown = ({
   onChange,
   selected_option,
   unique_field_name,
+  classes="flxCenter btnBorder"
 }) => {
   const [showDropDownList, setShowDropDownList] = React.useState(false);
   const dropDownRef = useRef(null);
@@ -31,11 +32,11 @@ const DropDown = ({
     <div className={showDropDownList ? "dropdown show" : "dropdown"}>
       <button
         type="button"
-        className="btnPrimary flxCenter"
+        className={classes}
         ref={dropDownRef}
         onClick={() => setShowDropDownList(true)}
       >
-        <span>{getTitle()}</span><i className="downArrow"></i>
+        <span>{getTitle()}</span><i className="downArrowDark"></i>
       </button>
       <div className={showDropDownList ? "dropdownMenu dropdownRight show" : "dropdownMenu dropdownRight"}>
         <div className="dropdownInnerWrap">

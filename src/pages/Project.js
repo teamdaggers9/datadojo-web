@@ -148,12 +148,22 @@ const Project = () => {
 
   return (
     <React.Fragment>
+      
       <div className="row">
         <div className="col-lg-12 col-xl-12 txtRight">
-          <span>switch</span>
-          <hr/>
+          <div className="flexSpaceCenterBetween">
+            <span></span>
+            <div className="checkSwitch">
+              <span className="left">OFF</span>
+              <input type="checkbox" id="switch" />
+              <label for="switch"><span>Toggle</span></label>
+              <span className="right">ON</span>
+            </div>
+            
+          </div>
         </div>
       </div>
+      <div className="projectInnerWrap">
       <div className="row">
         <div className="col-lg-12 col-xl-12 txtRight">
           <DropDown
@@ -162,52 +172,55 @@ const Project = () => {
             unique_field_name="project_id"
             onChange={(selected_option) => setSelectedProject(selected_option)}
             selected_option={selectedProject}
+            classes="flxCenter btnSecondary"
           />
         </div>
       </div>
-      <div className="row">
-        <div className="col-lg-12 col-xl-12">
-          <div className="">
+      
+        <div className="row">
+          <div className="col-lg-12 col-xl-12">
             <div className="">
-              <h4 className="">
-                {/* {getSelectedOption(
-                "project_name",
-                selectedProject,
-                "project_id",
-                projects
-              )} */}
-              </h4>
-              <div className="card-header-right"></div>
-            </div>
-            <div className="">
-              <div className="row">
-                <div className="col-lg-6 col-xl-6">
-                  <ProjectComponent
-                    projects={projects}
-                    candidates={candidates}
-                    skillSets={skillSets}
-                    designations={designations}
-                    dropdown_list={dropdown_list}
-                    getSelectedOption={getSelectedOption}
-                    TotalEffort={TotalEffort}
-                    RevisionHistory={RevisionHistory}
-                    Designations={Designations}
-                    Skills={Skills}
-                  />
-                </div>
-                <div className="col-lg-6 col-xl-6">
-                  <ProjectComponent
-                    projects={projects}
-                    candidates={candidates}
-                    skillSets={skillSets}
-                    designations={designations}
-                    dropdown_list={dropdown_list}
-                    getSelectedOption={getSelectedOption}
-                    TotalEffort={TotalEffort}
-                    RevisionHistory={RevisionHistory}
-                    Designations={Designations}
-                    Skills={Skills}
-                  />
+              <div className="">
+                <h4 className="">
+                  {/* {getSelectedOption(
+                  "project_name",
+                  selectedProject,
+                  "project_id",
+                  projects
+                )} */}
+                </h4>
+                <div className="card-header-right"></div>
+              </div>
+              <div className="">
+                <div className="row">
+                  <div className="col-lg-6 col-xl-6">
+                    <ProjectComponent
+                      projects={projects}
+                      candidates={candidates}
+                      skillSets={skillSets}
+                      designations={designations}
+                      dropdown_list={dropdown_list}
+                      getSelectedOption={getSelectedOption}
+                      TotalEffort={TotalEffort}
+                      RevisionHistory={RevisionHistory}
+                      Designations={Designations}
+                      Skills={Skills}
+                    />
+                  </div>
+                  <div className="col-lg-6 col-xl-6">
+                    <ProjectComponent
+                      projects={projects}
+                      candidates={candidates}
+                      skillSets={skillSets}
+                      designations={designations}
+                      dropdown_list={dropdown_list}
+                      getSelectedOption={getSelectedOption}
+                      TotalEffort={TotalEffort}
+                      RevisionHistory={RevisionHistory}
+                      Designations={Designations}
+                      Skills={Skills}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
