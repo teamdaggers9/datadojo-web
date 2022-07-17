@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import ReactTooltip from 'react-tooltip';
 
 const DropDown = ({
   dropdown_list,
@@ -33,15 +34,16 @@ const DropDown = ({
         type="button"
         className="btnPrimary"
         ref={dropDownRef}
-        onClick={() => setShowDropDownList(true)}
+        onClick={() => setShowDropDownList((prev)=>!prev)}
+        data-tip={getTitle()}
       >
-        {getTitle()} <i className="downArrow"></i>
+        {getTitle().slice(0,15)+'...'} <i className="downArrow"></i>
       </button>
       <div className={showDropDownList ? "dropdownMenu show" : "dropdownMenu"}>
         {dropdown_list.map((data, index) => (
           <a
             className="dropdownItem"
-            href="#"
+            href="javascript:void(0)"
             onClick={() => {
               onChange(data[unique_field_name]);
             }}
@@ -51,6 +53,7 @@ const DropDown = ({
           </a>
         ))}
       </div>
+      <ReactTooltip effect="solid"/>
     </div>
   );
 };

@@ -159,7 +159,7 @@ const Project = () => {
     if (selectedOption === 1) {
       return (
         <PieChart
-          chartTitle={title}
+          chartTitle={''}
           chartData={TotalEffort()}
           xAxisTitle={"Project"}
           yAxisTitle={"Days"}
