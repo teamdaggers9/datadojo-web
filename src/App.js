@@ -4,12 +4,12 @@ import { fetchCollections, createNewCollection } from "./services/firebase";
 import Loader from "./utils/components/loader";
 import "./assets/css/custom.css";
 import "./assets/css/grid.css";
-import * as MOCK_DATA from "./mock-data/MOCK_DATA.json";
+import * as Workforce from "./mock-data/workforce.json";
 
 function App() {
   const [loading, setLoading] = React.useState(true);
   const fetchMasterData = async () => {
-    // createNewCollection('projects', MOCK_DATA.default);
+    // createNewCollection('workforce', Workforce.default);
     await fetchCollections();
     setLoading(false);
   };
