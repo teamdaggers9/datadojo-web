@@ -24,18 +24,18 @@ const Project = ({
       ? getSelectedOption("title", selectedOption, "id", dropdown_list)
       : "";
     if (selectedOption === 1) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
             <PieChart
-            chartTitle={""}
-            chartData={TotalEffort(selectedProject)}
-            xAxisTitle={"Project"}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+              chartTitle={""}
+              chartData={TotalEffort(selectedProject)}
+              xAxisTitle={"Project"}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
@@ -51,18 +51,18 @@ const Project = ({
       );
     }
     if (selectedOption === 2) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
-          <RangeBarChart
-            chartTitle={""}
-            chartData={RevisionHistory(selectedProject)}
-            xAxisTitle={""}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+            <RangeBarChart
+              chartTitle={""}
+              chartData={RevisionHistory(selectedProject)}
+              xAxisTitle={""}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
@@ -78,18 +78,18 @@ const Project = ({
       );
     }
     if (selectedOption === 4) {
-      if(renderAllCharts){
+      if (renderAllCharts) {
         return (
           <React.Fragment>
-          <PieChart
-            chartTitle={""}
-            chartData={Designations(selectedProject)}
-            xAxisTitle={"Project"}
-            yAxisTitle={"Days"}
-            cId={getRandomValue("number", 3)}
-            height="400px"
-          />
-          <div className="hDevider"></div>
+            <PieChart
+              chartTitle={""}
+              chartData={Designations(selectedProject)}
+              xAxisTitle={"Project"}
+              yAxisTitle={"Days"}
+              cId={getRandomValue("number", 3)}
+              height="400px"
+            />
+            <div className="hDevider"></div>
           </React.Fragment>
         );
       }
