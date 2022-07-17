@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useAnychart } from "../../hooks/useAnyChart";
 
-const containerId = "rangeBarChart";
 
 const RangeBarChart = ({
   chartData,
   chartTitle,
   xAxisTitle,
   yAxisTitle,
+  cId,
   height = 400,
 }) => {
   const { anychart, isAnychartReady } = useAnychart();
+
+  const containerId = "rangeBarChart" + cId;
 
   useEffect(() => {
     isAnychartReady && anychart && renderChart();

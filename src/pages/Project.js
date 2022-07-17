@@ -4,6 +4,8 @@ import { getRandomValue } from "../utils/commonFunctions";
 import store from "../store/MasterStore";
 import DropDown from "../utils/components/DropDown";
 import { pieChartData, rangeBarChartData } from "../utils/charts/chartData";
+import ProjectComponent from "../components/Project";
+import ProjectComparison from "../components/ProjectComparison";
 
 const dropdown_list = [
   {
@@ -29,21 +31,16 @@ const dropdown_list = [
 ];
 
 const Project = () => {
-  const { projects, candidates, skillSets, designations } = store(
+  const { projects, candidates, skillSet, designations } = store(
     (state) => state
-  );
-
-  useEffect(() => {
-    console.log({ projects, candidates });
-  }, [projects]);
-
-  const [selectedOption, setSelectedOption] = React.useState(
-    dropdown_list[0].id
   );
 
   const [selectedProject, setSelectedProject] = React.useState(
     projects[0].project_id
   );
+
+  const [showProjectComparison, setShowProjectComparison] =
+    React.useState(true);
 
   const getSelectedOption = (
     field_name,
@@ -51,6 +48,12 @@ const Project = () => {
     unique_field_name,
     dropdown_list
   ) => {
+    console.log({
+      field_name,
+      selected_option,
+      unique_field_name,
+      dropdown_list,
+    });
     const _selected_option = dropdown_list.find(
       (data) => data[unique_field_name] === selected_option
     );
@@ -60,7 +63,7 @@ const Project = () => {
     return _selected_option[field_name];
   };
 
-  const TotalEffort = () => {
+  const TotalEffort = (selectedProject) => {
     const { development_activity, scrum_activity, debug_time } =
       getSelectedOption(null, selectedProject, "project_id", projects);
     return [
@@ -70,7 +73,7 @@ const Project = () => {
     ];
   };
 
-  const RevisionHistory = () => {
+  const RevisionHistory = (selectedProject) => {
     const revision_history = getSelectedOption(
       "revision history",
       selectedProject,
@@ -89,7 +92,7 @@ const Project = () => {
       .reverse();
   };
 
-  const Designations = () => {
+  const Designations = (selectedProject) => {
     const assigned_members = candidates.filter((data) =>
       data.assigned_projects.includes(selectedProject)
     );
@@ -124,11 +127,12 @@ const Project = () => {
     });
   };
 
-  const Skills = () => {
+  const Skills = (selectedProject) => {
     const assigned_members = candidates.filter((data) =>
       data.assigned_projects.includes(selectedProject)
     );
     const skills = assigned_members.map((data) => data.skill_set).flat();
+    console.log({ skills });
     let skills_count = [];
     for (const { skill_id } of skills) {
       const existing_skill = skills_count.find(
@@ -140,103 +144,59 @@ const Project = () => {
         skills_count = [...skills_count, { skill_id, count: 1 }];
       }
     }
+    console.log({ skills_count });
     return skills_count.map((data) => {
       const { skill_id, count } = data;
-      const { skill_name } = skillSets.find(
+      const { skill_name } = skillSet.find(
         (data) => data.skill_id === skill_id
       );
       return { x: skill_name, value: count };
     });
   };
 
-  const Chart = () => {
-    const title = getSelectedOption(
-      "title",
-      selectedOption,
-      "id",
-      dropdown_list
-    );
-    if (selectedOption === 1) {
-      return (
-        <PieChart
-          chartTitle={title}
-          chartData={TotalEffort()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-    if (selectedOption === 2) {
-      return (
-        <RangeBarChart
-          chartTitle={title}
-          chartData={RevisionHistory()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-    if (selectedOption === 4) {
-      return (
-        <PieChart
-          chartTitle={title}
-          chartData={Designations()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-    if (selectedOption === 5) {
-      return (
-        <PieChart
-          chartTitle={title}
-          chartData={Skills()}
-          xAxisTitle={"Project"}
-          yAxisTitle={"Days"}
-          cId={getRandomValue("number", 3)}
-          height="400px"
-        />
-      );
-    }
-  };
-
   return (
     <React.Fragment>
       <div className="row">
-        <div className="col-lg-12 col-xl-12">
-          <div className="card">
-            <div className="card-header">
-              <h4 className="card-title">
-                {getSelectedOption(
-                  "project_name",
-                  selectedProject,
-                  "project_id",
-                  projects
-                )}{" "}
-                |{" "}
-                {getSelectedOption(
-                  "title",
-                  selectedOption,
-                  "id",
-                  dropdown_list
-                )}
-              </h4>
-              <div className="card-header-right">
-                <DropDown
-                  dropdown_list={dropdown_list}
-                  selected_field_name="title"
-                  unique_field_name="id"
-                  onChange={(selected_option) =>
-                    setSelectedOption(selected_option)
-                  }
-                  selected_option={selectedOption}
-                />
+        <div className="col-lg-12 col-xl-12 txtRight">
+          <div className="flexSpaceCenterBetween">
+            <span></span>
+            <div className="checkSwitch">
+              <span className="left">OFF</span>
+              <input
+                type="checkbox"
+                id="switch"
+                defaultChecked={showProjectComparison}
+                onChange={() => setShowProjectComparison((prev) => !prev)}
+              />
+              <label for="switch">
+                <span>Toggle</span>
+              </label>
+              <span className="right">ON</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="projectInnerWrap">
+        {showProjectComparison ? (
+          <React.Fragment>
+            <ProjectComparison
+              projects={projects}
+              candidates={candidates}
+              skillSets={skillSet}
+              designations={designations}
+              dropdown_list={dropdown_list}
+              getSelectedOption={getSelectedOption}
+              TotalEffort={TotalEffort}
+              RevisionHistory={RevisionHistory}
+              Designations={Designations}
+              Skills={Skills}
+              selectedProject={selectedProject}
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <div className="row">
+              <div className="col-lg-12 col-xl-12 txtRight">
                 <DropDown
                   dropdown_list={projects}
                   selected_field_name="project_name"
@@ -248,9 +208,37 @@ const Project = () => {
                 />
               </div>
             </div>
-            <div className="card-body">{Chart()}</div>
-          </div>
-        </div>
+            <div className="row">
+              <div className="col-lg-12 col-xl-12">
+                <div className="">
+                  <div className="">
+                    <h4 className=""></h4>
+                    <div className="card-header-right"></div>
+                  </div>
+                  <div className="">
+                    <div className="row">
+                      <div className="col-lg-6 col-xl-6">
+                        <ProjectComponent
+                          projects={projects}
+                          candidates={candidates}
+                          skillSets={skillSet}
+                          designations={designations}
+                          dropdown_list={dropdown_list}
+                          getSelectedOption={getSelectedOption}
+                          TotalEffort={TotalEffort}
+                          RevisionHistory={RevisionHistory}
+                          Designations={Designations}
+                          Skills={Skills}
+                          selectedProject={selectedProject}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        )}
       </div>
     </React.Fragment>
   );

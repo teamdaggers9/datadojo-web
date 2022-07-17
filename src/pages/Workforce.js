@@ -30,15 +30,16 @@ const Workforce = () => {
                             <span className="location">{data.location}</span>
                         </span>
                         <p className="description">
-                            Skill Set:<br />
-                            {
+                            <button type="button" className='btnBorder skillsetBtn'>Skill Set</button>
+                            <br />
+                            {/* {
                                 data.skill_set.map(skill => {
                                     const skillData = skillSet.find(sk => sk.skill_id === skill.skill_id)
 
                                     if (skillData) return " " + skillData.skill_name;
                                     else return ""
                                 }).toString()
-                            }
+                            } */}
 
                         </p>
 

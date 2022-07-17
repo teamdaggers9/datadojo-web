@@ -45,27 +45,27 @@ const Table = ({ dataSet }) => {
       order_id: 8,
     },
     {
-      Header: "Planned Effort (in hours)",
+      Header: "Planned Effort",
       accessor: "planned_effort",
       order_id: 9,
     },
     {
-      Header: "Actual Effort (in hours)",
+      Header: "Actual Effort",
       accessor: "actual_effort",
       order_id: 10,
     },
     {
-      Header: "Scrum Activity (in hours)",
+      Header: "Scrum Activity",
       accessor: "scrum_activity",
       order_id: 11,
     },
     {
-      Header: "Development Time (in hours)",
+      Header: "Development Time",
       accessor: "development_activity",
       order_id: 12,
     },
     {
-      Header: "Debug Time (in hours)",
+      Header: "Debug Time",
       accessor: "debug_time",
       order_id: 13,
     },
@@ -169,9 +169,9 @@ const Table = ({ dataSet }) => {
                       <td key={_index} className={setClassName(accessor)}>
                         <div className="projectImage">
                           <img
-                            src="https://aspaceforphotography.com/wp-content/uploads/2017/11/f2637562392edd24809a100a0211e6f8-symbols-design-logo-icon-design.jpg"
-                            width="40px"
-                          />
+                            src={require("../../assets/images/dummy-project-icon.png")}
+                            width="18px"
+                          />{" "}
                           {data[accessor]}
                         </div>
                       </td>
