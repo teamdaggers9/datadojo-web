@@ -19,7 +19,6 @@ const MultiSeriesColumnChart = ({ chartTitle, chartData, xAxisTitle, yAxisTitle,
       chart.width("99%");
       chart.maxPointWidth("10%");
       chart.minPointLength(5);
-      chart.animation(true);  // turn on chart animation
       chart.barsPadding(-0.8);  // set the padding between columns
       chart.yAxis().title(yAxisTitle);  // set titles for Y-axis
       chart.xAxis().title(xAxisTitle);  // set titles for X-axis

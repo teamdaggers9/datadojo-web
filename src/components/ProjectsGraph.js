@@ -5,13 +5,15 @@ import { getRandomValue } from "../utils/commonFunctions";
 import store from "../store/MasterStore";
 import config from "../config/config";
 import moment from "moment";
+import DropDown from "../utils/components/DropDown";
 
 const ProjectGraph = () => {
   const { projects } = store((state) => state);
   const { hourly_rate } = config;
 
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentOption, setCurrentOption] = useState(1);
+  const [selectedOption, setSelectedOption] = useState(
+    AppSetting.projectGraphOptions[0].value
+  );
 
   const EstVsActualDuration = () => {
     const header = ["#", "Estimated", "Actual"];
@@ -99,8 +101,8 @@ const ProjectGraph = () => {
     return [...rows];
   };
 
-  const selectMap = (currentOption) => {
-    switch (currentOption) {
+  const selectMap = (selectedOption) => {
+    switch (selectedOption) {
       case 1:
         return (
           <MultiSeriesColumnChart
@@ -165,57 +167,19 @@ const ProjectGraph = () => {
         <h4 className="card-title">
           {
             AppSetting.projectGraphOptions.find(
-              (each) => each.value === currentOption
+              (each) => each.value === selectedOption
             ).label
           }
         </h4>
-        <div className="dropdown dropdownRight">
-          <button
-            type="button"
-            className="btnPrimary"
-            onClick={() => setIsVisible((prev) => !prev)}
-          >
-            {
-              AppSetting.projectGraphOptions.find(
-                (each) => each.value === currentOption
-              ).label
-            }
-          </button>
-          <div className="dropdown">
-            <button
-              type="button"
-              className="btnPrimary"
-              onClick={() => setIsVisible((prev) => !prev)}
-            >
-              <span>
-              {
-                AppSetting.projectGraphOptions.find(
-                  (each) => each.value === currentOption
-                ).label
-              }{" "}
-              </span>
-              <i className="downArrow"></i>
-            </button>
-            <div className={`dropdownMenu dropdownRight ${isVisible ? "show" : ""}`}>
-              {AppSetting.projectGraphOptions.map((eachOption, index) => (
-                <a
-                  className={`dropdownItem`}
-                  href="javascript:void(0)"
-                  id={eachOption.value}
-                  onClick={() => {
-                    setCurrentOption(eachOption.value);
-                    setIsVisible(false);
-                  }}
-                  key={index}
-                >
-                  {eachOption.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <DropDown
+          dropdown_list={AppSetting.projectGraphOptions}
+          selected_field_name="label"
+          unique_field_name="value"
+          onChange={(selected_option) => setSelectedOption(selected_option)}
+          selected_option={selectedOption}
+        />
       </div>
-      <div className="card-body">{selectMap(currentOption)}</div>
+      <div className="card-body">{selectMap(selectedOption)}</div>
     </React.Fragment>
   );
 };

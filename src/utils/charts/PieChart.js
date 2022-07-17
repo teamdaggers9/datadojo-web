@@ -19,7 +19,7 @@ const PieChart = ( { chartData, chartTitle, cId, height } ) => {
             if (chartElement !== null) chartElement.innerHTML = "";
             const chart = anychart.pie(chartData);
 
-            chart.title(chartTitle);
+            chartTitle !== '' && chart.title(chartTitle);
             // set the container id
             chart.container(containerId);
     

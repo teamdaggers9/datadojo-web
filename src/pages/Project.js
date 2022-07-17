@@ -34,10 +34,6 @@ const Project = () => {
     (state) => state
   );
 
-  const [selectedOption, setSelectedOption] = React.useState(
-    dropdown_list[0].id
-  );
-
   const [selectedProject, setSelectedProject] = React.useState(
     projects[0].project_id
   );
@@ -180,47 +176,47 @@ const Project = () => {
         <div className="row">
           <div className="col-lg-12 col-xl-12">
             <div className="">
-              <div className="">
-                <h4 className="">
-                  {/* {getSelectedOption(
-                  "project_name",
-                  selectedProject,
-                  "project_id",
-                  projects
-                )} */}
-                </h4>
-                <div className="card-header-right"></div>
-              </div>
-              <div className="">
-                <div className="row">
-                  <div className="col-lg-6 col-xl-6">
-                    <ProjectComponent
-                      projects={projects}
-                      candidates={candidates}
-                      skillSets={skillSets}
-                      designations={designations}
-                      dropdown_list={dropdown_list}
-                      getSelectedOption={getSelectedOption}
-                      TotalEffort={TotalEffort}
-                      RevisionHistory={RevisionHistory}
-                      Designations={Designations}
-                      Skills={Skills}
-                    />
-                  </div>
-                  <div className="col-lg-6 col-xl-6">
-                    <ProjectComponent
-                      projects={projects}
-                      candidates={candidates}
-                      skillSets={skillSets}
-                      designations={designations}
-                      dropdown_list={dropdown_list}
-                      getSelectedOption={getSelectedOption}
-                      TotalEffort={TotalEffort}
-                      RevisionHistory={RevisionHistory}
-                      Designations={Designations}
-                      Skills={Skills}
-                    />
-                  </div>
+              <h4 className="">
+                {/* {getSelectedOption(
+                "project_name",
+                selectedProject,
+                "project_id",
+                projects
+              )} */}
+              </h4>
+              <div className="card-header-right"></div>
+            </div>
+            <div className="">
+              <div className="row">
+                <div className="col-lg-6 col-xl-6">
+                  <ProjectComponent
+                    projects={projects}
+                    candidates={candidates}
+                    skillSets={skillSets}
+                    designations={designations}
+                    dropdown_list={dropdown_list}
+                    getSelectedOption={getSelectedOption}
+                    TotalEffort={TotalEffort}
+                    RevisionHistory={RevisionHistory}
+                    Designations={Designations}
+                    Skills={Skills}
+                    selectedProject={selectedProject}
+                  />
+                </div>
+                <div className="col-lg-6 col-xl-6">
+                  <ProjectComponent
+                    projects={projects}
+                    candidates={candidates}
+                    skillSets={skillSets}
+                    designations={designations}
+                    dropdown_list={dropdown_list}
+                    getSelectedOption={getSelectedOption}
+                    TotalEffort={TotalEffort}
+                    RevisionHistory={RevisionHistory}
+                    Designations={Designations}
+                    Skills={Skills}
+                    selectedProject={selectedProject}
+                  />
                 </div>
               </div>
             </div>

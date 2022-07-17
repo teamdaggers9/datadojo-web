@@ -13,13 +13,10 @@ const Project = ({
   RevisionHistory,
   Designations,
   Skills,
+  selectedProject = { selectedProject },
 }) => {
   const [selectedOption, setSelectedOption] = React.useState(
     dropdown_list[0].id
-  );
-
-  const [selectedProject, setSelectedProject] = React.useState(
-    projects[0].project_id
   );
 
   const Chart = () => {
